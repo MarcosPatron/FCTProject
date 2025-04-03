@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/main_menu">
+
+    <fragment
+        android:id="@+id/chat"
+        android:name="com.example.myapplication.Chat"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_chat"/>
+
+    <fragment
+        android:id="@+id/main_menu"
+        android:name="com.example.myapplication.MainMenu"
+        android:label="fragment_first"
+        tools:layout="@layout/fragment_main_menu">
+
+        <action
+            android:id="@+id/action_main_menu_to_chat"
+            app:destination="@id/chat"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+</navigation>

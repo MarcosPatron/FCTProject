@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 public class RecyclerMenu extends RecyclerView.Adapter<RecyclerMenu.ThreadViewHolder> {
-    // Hilo
+
     private List<String> threadList;
 
     public RecyclerMenu(Context context) {

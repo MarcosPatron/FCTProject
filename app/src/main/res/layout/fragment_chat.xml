@@ -6,9 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".Chat">
+    tools:context=".UI.Chat">
 
-    <!-- RecyclerView -->
     <TextView
         android:id="@+id/tvHeader"
         android:layout_width="0dp"
@@ -38,7 +37,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Imagen centrada -->
     <ImageView
         android:id="@+id/centerImage"
         android:layout_width="298dp"
@@ -49,7 +47,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_bias="0.5"/>
 
-    <!-- Contenedor de entrada -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/inputContainer"
         android:layout_width="0dp"
@@ -63,7 +60,7 @@
             android:id="@+id/consulta"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:background="@drawable/edit_text_bg"
+            android:background="@drawable/bg_edit_text"
             android:hint="Escribe aquí..."
             android:inputType="text"
             android:padding="12dp"
@@ -80,9 +77,9 @@
             android:layout_height="49dp"
             android:background="@drawable/rounded_image_button"
             android:contentDescription="Enviar"
+            android:src="@drawable/ic_send"
             android:padding="8dp"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_send"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/consulta"

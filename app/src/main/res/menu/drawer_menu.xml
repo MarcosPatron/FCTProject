@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/main_menu"
+        android:icon="@drawable/prueba"
+        android:title="Inicio" />
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/prueba"
+        android:title="Perfil" />
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/prueba"
+        android:title="Configuración" />
+    <item
+        android:id="@+id/help"
+        android:icon="@drawable/prueba"
+        android:title="Soporte" />
+    <item
+        android:id="@+id/logIn"
+        android:icon="@drawable/prueba"
+        android:title="Iniciar sesión" />
+
+</menu>

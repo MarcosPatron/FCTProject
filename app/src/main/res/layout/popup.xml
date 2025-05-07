@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_popup"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tvPopup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam magna massa, bibendum vel mauris ut, sagittis porta leo. Cras ligula neque, pretium non imperdiet feugiat, luctus eu ex. Sed tincidunt nulla in nisl lacinia rhoncus placerat sed purus. Cras ullamcorper tincidunt lectus et blandit. Morbi a ante faucibus, efficitur ante non, blandit metus. Phasellus ex nibh, imperdiet id quam eu, cursus interdum justo. Proin ut ultrices nulla, id imperdiet arcu. Aliquam et feugiat nibh. Morbi felis enim, imperdiet vel felis a, imperdiet mollis risus.
+
+Donec in molestie ligula. Sed vitae accumsan ligula. Donec condimentum lacus elit, sit amet ultrices nisl convallis sit amet. Nullam blandit nisi vitae ligula viverra rhoncus. Duis sit amet semper elit, non convallis orci. Aliquam condimentum dui nisl, a volutpat odio sagittis vitae. Etiam cursus egestas hendrerit. Aliquam quis finibus sem, hendrerit scelerisque tellus. Integer luctus, tellus vitae venenatis rutrum, est est mollis sapien, id varius nisl orci ut libero. Nulla sit amet fermentum neque, eget egestas augue. Sed leo lorem, vulputate sit amet rutrum sit amet, elementum a sem. Phasellus ornare pretium mi, vitae efficitur metus aliquam eu. Suspendisse quis sagittis leo. Fusce eget porttitor orci, a volutpat arcu. Sed id mauris tortor.
+
+Aenean ligula mi, aliquam eget nisi at, eleifend porttitor sapien. Nullam consectetur, metus eu tempus iaculis, justo justo tempus ligula, ac mollis tortor ipsum vitae nulla. Ut id orci a lectus congue faucibus eget eu odio. Cras posuere nulla sit amet nisi congue pretium. Quisque aliquet tempus eleifend. Donec id tempus justo. Vivamus quis congue lectus, vitae posuere dolor.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet vehicula nulla. Vestibulum quis turpis vel elit venenatis convallis. Cras commodo, libero eget pretium facilisis, dolor erat vestibulum nisl, eu dignissim eros sapien vel ex. Etiam rutrum porta dolor eu cursus. Pellentesque eu venenatis est. Vestibulum dolor mi, vestibulum at dapibus at, porta et ante. Fusce iaculis scelerisque facilisis. Donec magna est, faucibus a faucibus ut, feugiat nec leo.
+
+Maecenas tincidunt volutpat urna, luctus viverra massa laoreet sit amet. Phasellus id mauris tincidunt, egestas lectus at, faucibus nulla. Vestibulum vel tempor libero, ultricies viverra ligula. Maecenas sed lacus ornare, consectetur dolor in, luctus neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus posuere ligula a congue bibendum. Duis fermentum pharetra massa et vulputate."
+        android:textSize="16sp"
+        android:textColor="@android:color/black"/>
+</LinearLayout>

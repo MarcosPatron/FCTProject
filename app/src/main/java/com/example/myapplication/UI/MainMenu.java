@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.UI;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,12 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.R;
 import com.example.myapplication.Utils.RecyclerMenu;
 import com.example.myapplication.Utils.SharedPreferencesManager;
 import com.example.myapplication.databinding.FragmentMainMenuBinding;
@@ -33,6 +36,13 @@ public class MainMenu extends Fragment {
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerView.setAdapter(adapter);
 
+        // Botón para abrir el drawer-menu
+        binding.btnOpenDrawer.setOnClickListener(v -> {
+            DrawerLayout drawerLayout = requireActivity().findViewById(R.id.drawer_layout);
+            drawerLayout.openDrawer(GravityCompat.START);
+        });
+
+        // Boton para nuevo chat
         binding.fab.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.action_main_menu_to_chat);
         });

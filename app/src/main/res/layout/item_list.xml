@@ -15,7 +15,6 @@
         android:padding="16dp"
         android:background="@drawable/cardview_border">
 
-        <!-- Título -->
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="0dp"
@@ -28,7 +27,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <!-- Thread ID -->
         <TextView
             android:id="@+id/tvThreadId"
             android:layout_width="0dp"

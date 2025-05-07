@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class SharedPreferencesManager {
 
-    private static final String PREF_NAME = "MyAppPreferences";
+    private static final String PREF_NAME = "pref";
     private static final String CHAT_THREADS_KEY = "chatThreads";
     private static SharedPreferencesManager instance;
     private SharedPreferences sharedPreferences;

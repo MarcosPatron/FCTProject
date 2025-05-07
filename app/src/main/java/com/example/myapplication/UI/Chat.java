@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.UI;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +15,8 @@ import com.example.myapplication.API.ApiClient;
 import com.example.myapplication.API.ApiService;
 import com.example.myapplication.API.MessageRequest;
 import com.example.myapplication.API.MessageResponse;
+import com.example.myapplication.ChatClass;
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.Utils.RecyclerChat;
 import com.example.myapplication.Utils.SharedPreferencesManager;
 import com.example.myapplication.databinding.FragmentChatBinding;
@@ -78,10 +80,10 @@ public class Chat extends Fragment {
             binding.recyclerChat.smoothScrollToPosition(messages.size() - 1);
         }, 500);
 
-        recieveMessage(message);
+        receiveMessage(message);
     }
 
-    private void recieveMessage(String message) {
+    private void receiveMessage(String message) {
 
         List<Double> coordinates = new ArrayList<>(); // Example data
 
@@ -95,7 +97,7 @@ public class Chat extends Fragment {
 
         call.enqueue(new Callback<MessageResponse>() {
             @Override
-            public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+            public void onResponse(@NonNull Call<MessageResponse> call, @NonNull Response<MessageResponse> response) {
                 if (!response.isSuccessful()) {
                     Log.e("API_RESPONSE", "Error en la API: " + response.code());
                     return;
@@ -116,7 +118,7 @@ public class Chat extends Fragment {
                     processingMessageIndex = -1;
                 }
 
-                messages.add(msgResponse.getMensaje());
+                messages.add(msgResponse.getMessage());
                 isUserMessage.add(false);
                 adapter.notifyItemInserted(messages.size() - 1);
                 binding.recyclerChat.smoothScrollToPosition(messages.size() - 1);
@@ -161,7 +163,7 @@ public class Chat extends Fragment {
             if (adapter != null) {
                 adapter.notifyDataSetChanged();
             } else {
-                Log.e("ERROR", "Adapter is null when loading messages.");
+                Log.e("ERROR", "Adapter es nulo.");
             }
         } else {
             Log.d("DEBUG", "No se encontraron mensajes para el thread: " + threadId);

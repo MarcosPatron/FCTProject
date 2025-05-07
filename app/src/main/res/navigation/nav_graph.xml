@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/chat"
-        android:name="com.example.myapplication.Chat"
+        android:name="com.example.myapplication.UI.Chat"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_chat"/>
 
     <fragment
         android:id="@+id/main_menu"
-        android:name="com.example.myapplication.MainMenu"
+        android:name="com.example.myapplication.UI.MainMenu"
         android:label="fragment_first"
         tools:layout="@layout/fragment_main_menu">
 
@@ -24,5 +24,55 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_main_menu_to_profile"
+            app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_main_menu_to_settings"
+            app:destination="@id/settings" />
+        <action
+            android:id="@+id/action_main_menu_to_help"
+            app:destination="@id/help" />
+        <action
+            android:id="@+id/action_main_menu_to_logIn"
+            app:destination="@id/logIn" />
     </fragment>
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.example.myapplication.UI.Profile"
+        android:label="Profile" />
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.example.myapplication.UI.Settings"
+        android:label="Settings" >
+        <action
+            android:id="@+id/action_settings_to_help"
+            app:destination="@id/help" />
+    </fragment>
+    <fragment
+        android:id="@+id/help"
+        android:name="com.example.myapplication.UI.Help"
+        android:label="fragment_help"
+        tools:layout="@layout/fragment_help" >
+        <action
+            android:id="@+id/action_help_to_main_menu"
+            app:destination="@id/main_menu" />
+    </fragment>
+    <fragment
+        android:id="@+id/logIn"
+        android:name="com.example.myapplication.UI.LogIn"
+        android:label="fragment_log_in"
+        tools:layout="@layout/fragment_log_in" >
+        <action
+            android:id="@+id/action_logIn_to_profile"
+            app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_logIn_to_signIn"
+            app:destination="@id/signIn" />
+    </fragment>
+    <fragment
+        android:id="@+id/signIn"
+        android:name="com.example.myapplication.UI.SignIn"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" />
 </navigation>

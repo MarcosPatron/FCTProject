@@ -7,13 +7,15 @@ public class Usuario {
     private String JWToken;
     private String email;
     private String profilePicture;
+    private String tipoUsuario;
 
-    public Usuario(String name, String username, String JWToken, String email, String profilePicture) {
-        this.fullname = name;
+    public Usuario(String fullname, String username, String JWToken, String email, String profilePicture, String tipoUsuario) {
+        this.fullname = fullname;
         this.username = username;
         this.JWToken = JWToken;
         this.email = email;
         this.profilePicture = profilePicture;
+        this.tipoUsuario = tipoUsuario;
     }
 
     public String getFullname() {
@@ -54,5 +56,13 @@ public class Usuario {
 
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    public String getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 }

@@ -9,18 +9,18 @@ import retrofit2.http.PUT;
 
 public interface ApiService {
 
-    @POST("/api/backend/sendMessage")
+    @POST("send_message")
     Call<MessageResponse> sendMessage(@Body MessageRequest body);
 
-    @GET("/api/backend/logIn")
+    @GET("log_in")
     Call<Usuario> logIn(@Body Usuario body);
 
-    @POST("/api/backend/signIn")
+    @POST("sign_in")
     Call<Usuario> signIn(@Body Usuario body);
 
-    @PUT("/api/backend/editUser")
+    @PUT("edit_user")
     Call<Usuario> EditUser(@Body Usuario body);
 
-    @DELETE("/api/backend/deleteUser")
+    @DELETE("delete_user")
     Call<Usuario> deleteUser(int id);
 }

@@ -3,7 +3,7 @@ package com.example.myapplication.API;
 public class Usuario {
 
     private String fullname;
-    private String username;
+    private String username; // Unico
     private String JWToken;
     private String email;
     private String profilePicture;

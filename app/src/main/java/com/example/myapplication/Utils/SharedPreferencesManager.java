@@ -19,9 +19,9 @@ public class SharedPreferencesManager {
     private static final String PREF_NAME = "pref";
     private static final String CHAT_THREADS_KEY = "chatThreads";
     private static SharedPreferencesManager instance;
-    private SharedPreferences sharedPreferences;
-    private SharedPreferences.Editor editor;
-    private Gson gson;
+    final SharedPreferences sharedPreferences;
+    final SharedPreferences.Editor editor;
+    final Gson gson;
 
     private SharedPreferencesManager(Context context) {
         sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);

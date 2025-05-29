@@ -15,7 +15,12 @@ public interface ApiService {
     Call<MessageResponse> sendMessage(@Body MessageRequest body);
 
     // USUARIO
-    @GET("log_in")
+
+    // Tomar el user cada vez que se inicia la aplicación con el JWT en SharedPreferences
+    @GET("get_user")
+    Call<Usuario> getPerfil();
+
+    @POST("log_in")
     Call<Usuario> logIn(@Body Usuario body);
 
     @POST("sign_in")

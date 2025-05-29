@@ -21,7 +21,7 @@
         android:id="@+id/txtUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Invitado"
+        android:text="@string/menu_guest"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         android:textStyle="bold" />

@@ -17,6 +17,7 @@ import com.example.myapplication.API.MessageRequest;
 import com.example.myapplication.API.MessageResponse;
 import com.example.myapplication.ChatClass;
 import com.example.myapplication.MainActivity;
+import com.example.myapplication.R;
 import com.example.myapplication.Utils.RecyclerChat;
 import com.example.myapplication.Utils.SharedPreferencesManager;
 import com.example.myapplication.databinding.FragmentChatBinding;
@@ -73,7 +74,7 @@ public class Chat extends Fragment {
         binding.consulta.setText("");
 
         binding.recyclerChat.postDelayed(() -> {
-            messages.add("Procesando petición...");
+            messages.add(getString(R.string.chat_loading));
             processingMessageIndex = messages.size() - 1;
             isUserMessage.add(false);
             adapter.notifyItemInserted(messages.size() - 1);

@@ -24,26 +24,26 @@
         android:id="@+id/tvLoginTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Iniciar Sesión"
+        android:layout_marginTop="48dp"
+        android:gravity="center"
+        android:text="@string/login_title"
+        android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:gravity="center"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="48dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvUsernameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre de usuario"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/tvLoginTitle"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="32dp"
-        android:layout_marginLeft="10dp"/>
+        android:text="@string/login_username"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvLoginTitle" />
 
     <EditText
         android:id="@+id/etUsername"
@@ -62,12 +62,12 @@
         android:id="@+id/tvPasswordLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Contraseña"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/etUsername"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="16dp"
-        android:layout_marginLeft="10dp"/>
+        android:text="@string/login_password"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etUsername" />
 
     <EditText
         android:id="@+id/etPassword"
@@ -88,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="272dp"
-        android:text="Crear cuenta"
+        android:text="@string/login_create_acc"
         android:textColor="#82e0aa"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,7 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:backgroundTint="#82e0aa"
-        android:text="Iniciar Sesión"
+        android:text="@string/login_title"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

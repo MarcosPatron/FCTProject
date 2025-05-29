@@ -57,12 +57,12 @@
                 android:id="@+id/tv_edit_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Editar"
-                android:textColor="@android:color/holo_blue_dark"
-                android:textSize="14sp"
+                android:layout_marginStart="16dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_marginStart="16dp" />
+                android:text="@string/profile_edit"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -85,12 +85,12 @@
                 android:id="@+id/tv_edit_full_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Editar"
-                android:textColor="@android:color/holo_blue_dark"
-                android:textSize="14sp"
+                android:layout_marginStart="16dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_marginStart="16dp" />
+                android:text="@string/profile_edit"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -113,26 +113,26 @@
                 android:id="@+id/tv_edit_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Editar"
-                android:textColor="@android:color/holo_blue_dark"
-                android:textSize="14sp"
+                android:layout_marginStart="16dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_marginStart="16dp" />
+                android:text="@string/profile_edit"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/tv_edit_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cambiar contraseña"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textSize="14sp"
-            android:textStyle="normal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="40dp"
             android:clickable="true"
             android:focusable="true"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="40dp" />
+            android:text="@string/profile_change_pass"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="14sp"
+            android:textStyle="normal" />
 
         <Space
             android:layout_width="match_parent"
@@ -145,15 +145,15 @@
             android:id="@+id/tv_delete_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Eliminar cuenta"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:clickable="true"
-            android:focusable="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="32dp" />
+            android:layout_marginBottom="32dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/profile_delete"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 </ScrollView>

@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_menu_title" >Informacion Cáceres</string>
-    <string name="previous">Previo</string>
-    <string name="next">Siguiente</string>
     <string name="app_name">Mi aplicación</string>
+    <string name="next">Siguiente</string>
+    <string name="previous">Previo</string>
+    <string name="main_menu_title" >Informacion Cáceres</string>
     <string name="input_chat">Escribe aquí...</string>
     <string name="help_title">Ticket de Soporte</string>
     <string name="help_category">Categoría del problema</string>
     <string name="help_priority">Prioridad</string>
-    <string name="help_desc" >Descripción del problema</string>
+    <string name="help_desc">Descripción del problema</string>
     <string name="help_desc_input">Describe el problema con detalle</string>
     <string name="help_button_send">Enviar Ticket</string>
     <string name="login_title">Iniciar Sesión</string>
     <string name="login_username">Nombre de usuario</string>
     <string name="login_password">Contraseña</string>
     <string name="login_create_acc">Crear cuenta</string>
-    <string name="chat_title">Chat del asistente</string>
+    <string name="chat_title">Chat asistente</string>
     <string name="profile_edit" >Editar</string>
     <string name="profile_change_pass">Cambiar contraseña</string>
     <string name="profile_delete">Eliminar cuenta</string>

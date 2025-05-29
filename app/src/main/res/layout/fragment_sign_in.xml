@@ -24,27 +24,27 @@
         android:id="@+id/tvSignUpTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Crear Cuenta"
+        android:layout_marginTop="48dp"
+        android:gravity="center"
+        android:text="@string/signin_title"
+        android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:gravity="center"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="48dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Fullname -->
     <TextView
         android:id="@+id/tvFullnameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre completo"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/tvSignUpTitle"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="32dp"
-        android:layout_marginStart="10dp"/>
+        android:text="@string/signin_fullname"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSignUpTitle" />
 
     <EditText
         android:id="@+id/etFullname"
@@ -62,12 +62,12 @@
         android:id="@+id/tvUsernameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre de usuario"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/etFullname"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="8dp"
-        android:layout_marginStart="10dp"/>
+        android:text="@string/signin_username"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etFullname" />
 
     <EditText
         android:id="@+id/etUsername"
@@ -85,12 +85,12 @@
         android:id="@+id/tvEmailLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Correo electrónico"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/etUsername"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
-        android:layout_marginStart="10dp"/>
+        android:text="@string/signin_mail"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etUsername" />
 
     <EditText
         android:id="@+id/etEmail"
@@ -109,12 +109,12 @@
         android:id="@+id/tvContraseña"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Contraseña"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/etEmail"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="24dp"
-        android:layout_marginStart="10dp"/>
+        android:text="@string/signin_pass"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etEmail" />
 
     <EditText
         android:id="@+id/etPassword"
@@ -133,12 +133,12 @@
         android:id="@+id/tvRContraseña"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Confirmar contraseña"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/etPassword"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="8dp"
-        android:layout_marginStart="10dp"/>
+        android:text="@string/signin_c_pass"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etPassword" />
 
     <EditText
         android:id="@+id/etConfirmPassword"
@@ -159,7 +159,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
         android:backgroundTint="#82e0aa"
-        android:text="Crear Cuenta"
+        android:text="@string/signin_title"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

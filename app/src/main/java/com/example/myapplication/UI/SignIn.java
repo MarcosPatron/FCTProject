@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentSignInBinding;
 import com.example.myapplication.API.Usuario;
 
@@ -37,18 +38,18 @@ public class SignIn extends Fragment {
         // Validaciones básicas
         if (TextUtils.isEmpty(fullname) || TextUtils.isEmpty(username) ||
                 TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(confirmPassword)) {
-            Toast.makeText(getContext(), "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.signin_fields_pop), Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!password.equals(confirmPassword)) {
-            Toast.makeText(getContext(), "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.signin_pass_pop), Toast.LENGTH_SHORT).show();
             return;
         }
 
         // Crear objeto usuario (sin JWToken ni profilePicture de momento)
         Usuario nuevoUsuario = new Usuario(fullname, username, "", email, "", "cliente"); // ejemplo con tipo por defecto
 
-        Toast.makeText(getContext(), "Cuenta creada exitosamente", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), getString(R.string.signin_pop_ok), Toast.LENGTH_SHORT).show();
     }
 }

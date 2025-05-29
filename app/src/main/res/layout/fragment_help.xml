@@ -27,26 +27,25 @@
             android:id="@+id/tvHelpTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Ticket de Soporte"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="@string/help_title"
+            android:textColor="@android:color/black"
             android:textSize="22sp"
             android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:gravity="center"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="24dp"
-            android:layout_marginTop="30dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvCategoryLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Categoría del problema"
+            android:layout_marginTop="30dp"
+            android:text="@string/help_category"
             android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/tvHelpTitle"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="30dp"/>
+            app:layout_constraintTop_toBottomOf="@id/tvHelpTitle" />
 
         <Spinner
             android:id="@+id/spinnerCategory"
@@ -61,11 +60,11 @@
             android:id="@+id/tvPriorityLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Prioridad"
+            android:layout_marginTop="24dp"
+            android:text="@string/help_priority"
             android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/spinnerCategory"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="24dp" />
+            app:layout_constraintTop_toBottomOf="@id/spinnerCategory" />
 
         <Spinner
             android:id="@+id/spinnerPriority"
@@ -80,43 +79,42 @@
             android:id="@+id/tvDescriptionLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Descripción del problema"
+            android:layout_marginTop="24dp"
+            android:text="@string/help_desc"
             android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/spinnerPriority"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="24dp" />
+            app:layout_constraintTop_toBottomOf="@id/spinnerPriority" />
 
         <EditText
             android:id="@+id/etDescription"
             android:layout_width="0dp"
             android:layout_height="200dp"
-            android:hint="Describe tu problema con detalle..."
-            android:gravity="top|start"
+            android:layout_marginTop="8dp"
             android:background="@drawable/bg_edit_text"
-            android:padding="12dp"
+            android:gravity="top|start"
+            android:hint="@string/help_desc_input"
             android:inputType="textMultiLine"
-            android:overScrollMode="always"
-            android:scrollbars="vertical"
             android:maxLines="10"
             android:minLines="6"
+            android:overScrollMode="always"
+            android:padding="12dp"
+            android:scrollbars="vertical"
             android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@id/tvDescriptionLabel"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="8dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDescriptionLabel" />
 
         <Button
             android:id="@+id/btnSendTicket"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Enviar Ticket"
-            android:backgroundTint="#82e0aa"
-            android:textColor="@android:color/white"
-            app:layout_constraintTop_toBottomOf="@id/etDescription"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"/>
+            android:backgroundTint="#82e0aa"
+            android:text="@string/help_button_send"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

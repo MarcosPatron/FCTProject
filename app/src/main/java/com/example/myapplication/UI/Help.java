@@ -31,8 +31,8 @@ public class Help extends Fragment {
         View view = binding.getRoot();
 
         // Spinners
-        List<String> categories = Arrays.asList("Selecciona una categoría...", "Cuenta", "Asistente", "Problemas técnicos");
-        List<String> priorities = Arrays.asList("Selecciona la prioridad...", "Alta", "Media", "Baja");
+        List<String> categories = Arrays.asList(getString(R.string.select), getString(R.string.help_prio_acc), getString(R.string.help_prio_assis), getString(R.string.help_prio_prob));
+        List<String> priorities = Arrays.asList(getString(R.string.select), getString(R.string.help_cate_high), getString(R.string.help_cat_med), getString(R.string.help_cat_low));
 
         setupSpinner(binding.spinnerCategory, categories);
         setupSpinner(binding.spinnerPriority, priorities);
@@ -50,18 +50,18 @@ public class Help extends Fragment {
             String description = binding.etDescription.getText().toString().trim();
 
             if (category.equals(categories.get(0))) {
-                Toast.makeText(getContext(), "Por favor selecciona una categoría válida", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.help_pop_cat), Toast.LENGTH_SHORT).show();
                 return;
             }
             if (priority.equals(priorities.get(0))) {
-                Toast.makeText(getContext(), "Por favor selecciona una prioridad válida", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.help_pop_prio), Toast.LENGTH_SHORT).show();
                 return;
             }
             if (description.isEmpty()) {
-                Toast.makeText(getContext(), "Por favor escribe una descripción del problema", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.help_pop_desc), Toast.LENGTH_SHORT).show();
                 return;
             }
-            Toast.makeText(getContext(), "Ticket enviado correctamente", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), getString(R.string.help_pop_ok), Toast.LENGTH_LONG).show();
 
             // LLamada a la API
 

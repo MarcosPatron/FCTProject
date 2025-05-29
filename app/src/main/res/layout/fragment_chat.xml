@@ -16,7 +16,7 @@
         android:elevation="4dp"
         android:gravity="center"
         android:padding="8dp"
-        android:text="Información Cáceres"
+        android:text="@string/chat_title"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -61,7 +61,7 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:background="@drawable/bg_edit_text"
-            android:hint="Escribe aquí..."
+            android:hint="@string/input_chat"
             android:inputType="text"
             android:padding="12dp"
             android:textSize="16sp"
@@ -69,7 +69,7 @@
             app:layout_constraintEnd_toStartOf="@id/btnButtom"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.75"/>
+            app:layout_constraintWidth_percent="0.75" />
 
         <ImageButton
             android:id="@+id/btnButtom"

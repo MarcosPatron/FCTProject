@@ -3,22 +3,22 @@
     <item
         android:id="@+id/main_menu"
         android:icon="@drawable/mainmenu_icon"
-        android:title="Inicio" />
+        android:title="@string/menu_mainmenu" />
     <item
         android:id="@+id/profile"
         android:icon="@drawable/profile_icon"
-        android:title="Perfil" />
+        android:title="@string/menu_profile" />
     <item
         android:id="@+id/settings"
         android:icon="@drawable/settings_icon"
-        android:title="Configuración" />
+        android:title="@string/settings_title" />
     <item
         android:id="@+id/help"
         android:icon="@drawable/help_icon"
-        android:title="Soporte" />
+        android:title="@string/menu_help" />
     <item
         android:id="@+id/logIn"
         android:icon="@drawable/login_icon"
-        android:title="Iniciar sesión" />
+        android:title="@string/login_title" />
 
 </menu>

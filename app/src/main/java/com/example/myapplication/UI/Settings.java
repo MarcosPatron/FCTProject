@@ -1,5 +1,8 @@
 package com.example.myapplication.UI;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -7,6 +10,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.PopupWindow;
 import android.widget.Toast;
@@ -23,6 +27,7 @@ import com.example.myapplication.databinding.FragmentSettingsBinding;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class Settings extends Fragment {
 
@@ -39,27 +44,34 @@ public class Settings extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Switch de modo oscuro
-        binding.switchDarkMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            // Aquí iría la lógica para cambiar el tema oscuro
-        });
-
         // Spinner de idioma
         List<String> idiomas = Arrays.asList("Español", "English");
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, idiomas);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinnerLanguage.setAdapter(adapter);
 
-        binding.spinnerLanguage.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
+        binding.spinnerLanguage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(android.widget.AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedLanguage = idiomas.get(position);
-                // Aquí podrías aplicar el cambio de idioma, si se desea
+                SharedPreferences prefs = requireContext().getSharedPreferences("settings", Context.MODE_PRIVATE);
+                String currentLang = prefs.getString("app_language", "es");
+
+                if ((selectedLanguage.equals("Español") && !currentLang.equals("es")) ||
+                        (selectedLanguage.equals("English") && !currentLang.equals("en"))) {
+                    if (selectedLanguage.equals("Español")) {
+                        setLocale("es");
+                    } else {
+                        setLocale("en");
+                    }
+                }
+
             }
 
             @Override
-            public void onNothingSelected(android.widget.AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) {}
         });
+
 
         // Botón para abrir el drawer-menu
         binding.btnOpenDrawer.setOnClickListener(v -> {
@@ -115,4 +127,24 @@ public class Settings extends Fragment {
 
         popupWindow.setOnDismissListener(() -> rootView.removeView(dimView));
     }
+
+    private void setLocale(String languageCode) {
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+        requireContext().getResources().updateConfiguration(
+                config,
+                requireContext().getResources().getDisplayMetrics()
+        );
+
+        // Guardar idioma en SharedPreferences
+        SharedPreferences prefs = requireContext().getSharedPreferences("settings", Context.MODE_PRIVATE);
+        prefs.edit().putString("app_language", languageCode).apply();
+
+        // Reiniciar la actividad para aplicar el cambio
+        requireActivity().recreate();
+    }
+
 }

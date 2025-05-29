@@ -24,10 +24,10 @@
         android:background="#2E7D32"
         android:gravity="center"
         android:padding="8dp"
-        android:text="Consultas recientes"
+        android:text="@string/main_menu_title"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/centerImage"

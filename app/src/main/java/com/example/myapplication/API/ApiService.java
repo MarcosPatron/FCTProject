@@ -7,6 +7,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface ApiService {
 
@@ -17,25 +18,25 @@ public interface ApiService {
     // USUARIO
 
     // Tomar el user cada vez que se inicia la aplicación con el JWT en SharedPreferences
-    @GET("get_user")
+    @GET("/api/backend/get_user")
     Call<Usuario> getPerfil();
 
-    @POST("log_in")
+    @POST("/api/backend/log_in")
     Call<Usuario> logIn(@Body Usuario body);
 
-    @POST("sign_in")
+    @POST("/api/backend/sign_in")
     Call<Usuario> signIn(@Body Usuario body);
 
-    @PUT("edit_user")
-    Call<Usuario> EditUser(@Body Usuario body);
+    @PUT("/api/backend/users/{user_id}")
+    Call<Usuario> EditUser(@Path("user_id") int userId, @Body Usuario body);
 
-    @DELETE("delete_user")
-    Call<Usuario> deleteUser(int id);
+    @DELETE("/api/backend/delete_user/{user_id}")
+    Call<Void> deleteUser(@Path("user_id") int userId);
 
     @GET("validate-token") // Si la respuesta es 401 hago logout
     Call<Void> validateToken(@Header("Authorization") String token);
 
     // TICKET
-    @POST("send_ticket")
+    @POST("/api/backend/send_ticket")
     Call<Void> sendTicket(@Body Ticket body);
 }

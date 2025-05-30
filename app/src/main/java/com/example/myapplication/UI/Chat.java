@@ -93,7 +93,7 @@ public class Chat extends Fragment {
         coordinates.add(MainActivity.latitude);
         coordinates.add(MainActivity.longitude);
 
-        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+        ApiService apiService = ApiClient.getClient(requireContext()).create(ApiService.class);
         Call<MessageResponse> call = apiService.sendMessage(new MessageRequest(message, currentThreadId, coordinates));
 
         call.enqueue(new Callback<MessageResponse>() {

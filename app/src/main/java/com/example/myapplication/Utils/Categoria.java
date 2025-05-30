@@ -1,5 +1,10 @@
 package com.example.myapplication.Utils;
 
+import static android.provider.Settings.System.getString;
+
+import com.example.myapplication.R;
+
 public enum Categoria {
-    Cuenta, Asistente, Tecnico;
+    Cuenta, Asistente, Tecnicos;
+
 }

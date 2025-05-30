@@ -1,5 +1,9 @@
 package com.example.myapplication.UI;
 
+import static android.provider.Settings.System.getString;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,11 +18,21 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.example.myapplication.API.ApiClient;
+import com.example.myapplication.API.ApiService;
+import com.example.myapplication.API.Ticket;
+import com.example.myapplication.API.Usuario;
 import com.example.myapplication.R;
+import com.example.myapplication.Utils.Categoria;
+import com.example.myapplication.Utils.Prioridad;
 import com.example.myapplication.databinding.FragmentHelpBinding;
 
 import java.util.Arrays;
 import java.util.List;
+
+import retrofit2.Callback;
+import retrofit2.Call;
+import retrofit2.Response;
 
 public class Help extends Fragment {
 
@@ -43,17 +57,32 @@ public class Help extends Fragment {
             drawerLayout.openDrawer(GravityCompat.START);
         });
 
-        // Botón
         binding.btnSendTicket.setOnClickListener(v -> {
+            // Obtener user_id desde SharedPreferences
+// Usuario por defecto (temporal mientras no haya login real)
+            Usuario usuario = new Usuario(
+                    "Juan Pérez",
+                    "juanperez",
+                    "jwt_fake_token_para_testing",
+                    "juan.perez@example.com",
+                    "", // Sin foto de perfil
+                    "usuario"
+            );
+
+            if (usuario == null) {
+                Toast.makeText(getContext(), "Inicia sesión para poder enviar un ticket", Toast.LENGTH_LONG).show();
+                return;
+            }
+
             String category = binding.spinnerCategory.getSelectedItem().toString();
             String priority = binding.spinnerPriority.getSelectedItem().toString();
             String description = binding.etDescription.getText().toString().trim();
 
-            if (category.equals(categories.get(0))) {
+            if (category.equals(getString(R.string.select))) {
                 Toast.makeText(getContext(), getString(R.string.help_pop_cat), Toast.LENGTH_SHORT).show();
                 return;
             }
-            if (priority.equals(priorities.get(0))) {
+            if (priority.equals(getString(R.string.select))) {
                 Toast.makeText(getContext(), getString(R.string.help_pop_prio), Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -61,11 +90,26 @@ public class Help extends Fragment {
                 Toast.makeText(getContext(), getString(R.string.help_pop_desc), Toast.LENGTH_SHORT).show();
                 return;
             }
-            Toast.makeText(getContext(), getString(R.string.help_pop_ok), Toast.LENGTH_LONG).show();
 
-            // LLamada a la API
+            Ticket ticket = new Ticket(usuario, getCategoriaEnum(category), getPrioridadEnum(priority), description);
 
-            Navigation.findNavController(v).navigate(R.id.action_help_to_main_menu);
+            ApiService apiService = ApiClient.getClient(requireContext()).create(ApiService.class);
+            apiService.sendTicket(ticket).enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                    if (response.isSuccessful()) {
+                        Toast.makeText(getContext(), getString(R.string.help_pop_ok), Toast.LENGTH_LONG).show();
+                        Navigation.findNavController(v).navigate(R.id.action_help_to_main_menu);
+                    } else {
+                        Toast.makeText(getContext(), "Error al enviar ticket", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+                    Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
         });
 
         return view;
@@ -94,4 +138,29 @@ public class Help extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
+
+    private Categoria getCategoriaEnum(String selectedText) {
+        if (selectedText.equals(getString(R.string.help_prio_acc))) {
+            return Categoria.Cuenta;
+        } else if (selectedText.equals(getString(R.string.help_prio_assis))) {
+            return Categoria.Asistente;
+        } else if (selectedText.equals(getString(R.string.help_prio_prob))) {
+            return Categoria.Tecnicos;
+        } else {
+            throw new IllegalArgumentException("Categoría inválida: " + selectedText);
+        }
+    }
+
+    private Prioridad getPrioridadEnum(String selectedText) {
+        if (selectedText.equals(getString(R.string.help_cat_low))) {
+            return Prioridad.baja;
+        } else if (selectedText.equals(getString(R.string.help_cat_med))) {
+            return Prioridad.media;
+        } else if (selectedText.equals(getString(R.string.help_cate_high))) {
+            return Prioridad.alta;
+        } else {
+            throw new IllegalArgumentException("Prioridad inválida: " + selectedText);
+        }
+    }
+
 }

@@ -1,10 +1,13 @@
 package com.example.myapplication;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,6 +19,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.myapplication.API.Usuario;
 import com.example.myapplication.databinding.ActivityMainBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -38,22 +42,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Configurar idioma guardado en preferencias
         SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
-        String lang = prefs.getString("app_language", "es"); // español por defecto
+        String lang = prefs.getString("app_language", "es");
         Locale locale = new Locale(lang);
         Locale.setDefault(locale);
-
         Configuration config = new Configuration();
         config.setLocale(locale);
         getResources().updateConfiguration(config, getResources().getDisplayMetrics());
 
-
+        // ViewBinding
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Barra de tareas
+        // Toolbar
         setSupportActionBar(binding.toolbar);
 
+        // Navigation
         NavHostFragment navHostFragment = (NavHostFragment)
                 getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
         if (navHostFragment != null) {
@@ -61,20 +66,56 @@ public class MainActivity extends AppCompatActivity {
         }
 
         appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.logIn, R.id.settings, R.id.help, R.id.profile  // Destinos del menu
+                R.id.logIn, R.id.settings, R.id.help, R.id.profile
         ).setOpenableLayout(binding.drawerLayout).build();
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
+        binding.navView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+            boolean sesionActiva = Usuario.sesionActiva(this);
+
+            // Cambiar login por logout
+            binding.navView.getMenu().findItem(R.id.logIn).setTitle(
+                    sesionActiva ? getString(R.string.settings_logout) : getString(R.string.login_title)
+            );
+
+            // Ocultar perfil y soporte si no hay sesión
+            binding.navView.getMenu().findItem(R.id.profile).setVisible(sesionActiva);
+            binding.navView.getMenu().findItem(R.id.help).setVisible(sesionActiva);
+        });
+
+        binding.navView.setNavigationItemSelectedListener(item -> {
+            int id = item.getItemId();
+
+            if (id == R.id.logIn) {
+                if (Usuario.sesionActiva(this)) {
+                    new androidx.appcompat.app.AlertDialog.Builder(this)
+                            .setTitle(getString(R.string.settings_logout))
+                            .setMessage(getString(R.string.main_sure))
+                            .setPositiveButton(getString(R.string.main_yes), (dialog, which) -> {
+                                Usuario.cerrarSesion(this);
+                                navController.navigate(R.id.logIn);
+                            })
+                            .setNegativeButton(getString(R.string.main_cancel), (dialog, which) -> dialog.dismiss())
+                            .show();
+                } else {
+                    navController.navigate(R.id.logIn);
+                }
+
+                binding.drawerLayout.close();
+                return true;
+            }
+
+            boolean handled = NavigationUI.onNavDestinationSelected(item, navController);
+            if (handled) binding.drawerLayout.close();
+            return handled;
+        });
 
         // Localización
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-
-        // Pedir permisos (obligatorio desde la version 6.0)
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
-
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     LOCATION_PERMISSION_REQUEST_CODE);
@@ -82,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
             getLastLocation();
         }
     }
+
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -96,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getLastLocation();
             } else {
-                Toast.makeText(this, "Permiso de ubicación denegado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.main_permision), Toast.LENGTH_SHORT).show();
             }
         }
     }

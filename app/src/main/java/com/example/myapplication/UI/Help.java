@@ -58,19 +58,11 @@ public class Help extends Fragment {
         });
 
         binding.btnSendTicket.setOnClickListener(v -> {
-            // Obtener user_id desde SharedPreferences
-// Usuario por defecto (temporal mientras no haya login real)
-            Usuario usuario = new Usuario(
-                    "Juan Pérez",
-                    "juanperez",
-                    "jwt_fake_token_para_testing",
-                    "juan.perez@example.com",
-                    "", // Sin foto de perfil
-                    "usuario"
-            );
+            // Obtener usuario desde SharedPreferences
+            Usuario usuario = Usuario.obtenerSesion(requireContext());
 
             if (usuario == null) {
-                Toast.makeText(getContext(), "Inicia sesión para poder enviar un ticket", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), (R.string.help_error_login), Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -101,13 +93,13 @@ public class Help extends Fragment {
                         Toast.makeText(getContext(), getString(R.string.help_pop_ok), Toast.LENGTH_LONG).show();
                         Navigation.findNavController(v).navigate(R.id.action_help_to_main_menu);
                     } else {
-                        Toast.makeText(getContext(), "Error al enviar ticket", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), (R.string.help_ticket_error), Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
-                    Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.login_conexion), Toast.LENGTH_SHORT).show();
                 }
             });
         });

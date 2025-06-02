@@ -91,10 +91,6 @@ public class Settings extends Fragment {
         binding.tvContactSupport.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.action_settings_to_help);
         });
-
-        binding.tvLogout.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Cerrar sesión", Toast.LENGTH_SHORT).show();
-        });
     }
 
     private void showPopupWindow() {

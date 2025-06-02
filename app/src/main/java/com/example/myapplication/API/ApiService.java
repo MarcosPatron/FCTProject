@@ -17,24 +17,20 @@ public interface ApiService {
 
     // USUARIO
 
-    // Tomar el user cada vez que se inicia la aplicación con el JWT en SharedPreferences
     @GET("/api/backend/get_user")
     Call<Usuario> getPerfil();
 
     @POST("/api/backend/log_in")
-    Call<Usuario> logIn(@Body Usuario body);
+    Call<Usuario> logIn(@Body LoginRequest body);
 
     @POST("/api/backend/sign_in")
     Call<Usuario> signIn(@Body Usuario body);
 
-    @PUT("/api/backend/users/{user_id}")
-    Call<Usuario> EditUser(@Path("user_id") int userId, @Body Usuario body);
+    @PUT("/api/backend/edit_user/{username}")
+    Call<Usuario> EditUser(@Path("username") String username, @Body Usuario body);
 
-    @DELETE("/api/backend/delete_user/{user_id}")
-    Call<Void> deleteUser(@Path("user_id") int userId);
-
-    @GET("validate-token") // Si la respuesta es 401 hago logout
-    Call<Void> validateToken(@Header("Authorization") String token);
+    @DELETE("/api/backend/delete_user/{username}")
+    Call<Void> deleteUser(@Path("username") String username);
 
     // TICKET
     @POST("/api/backend/send_ticket")

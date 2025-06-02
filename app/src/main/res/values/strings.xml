@@ -50,4 +50,20 @@
     <string name="signin_pass_pop">Las contraseñas no coinciden</string>
     <string name="signin_pop_ok">Cuenta creada exitosamente</string>
     <string name="chat_loading">Procesando petición...</string>
+    <string name="main_sure">¿Estas seguro de que quieres cerrar la sesión?</string>
+    <string name="main_yes">Si</string>
+    <string name="main_cancel">Cancelar</string>
+    <string name="main_permision">Permiso de ubicación denegado</string>
+    <string name="login_wrong_data">Contraseña incorrecta</string>
+    <string name="login_error_login">Error al iniciar sesión.</string>
+    <string name="login_conexion">Error de conexión</string>
+    <string name="profile_new">"Nuevo "</string>
+    <string name="profile_save">Guardar</string>
+    <string name="profile_cancel">Cancelar</string>
+    <string name="profile_pop_updated">Perfil actualizado</string>
+    <string name="profile_pop_error_update">Error al actualizar</string>
+    <string name="profile_deleted">Cuenta eliminada</string>
+    <string name="help_error_login">Inicia sesión para poder enviar un ticket</string>
+    <string name="help_ticket_error">Error al enviar ticket</string>
+    <string name="signin_pop_termsnconds">Debes aceptar los términos y condiciones</string>
 </resources>

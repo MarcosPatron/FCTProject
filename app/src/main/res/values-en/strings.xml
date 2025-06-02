@@ -50,4 +50,20 @@
     <string name="signin_pass_pop">Passwords do not match</string>
     <string name="signin_pop_ok">Account created succesfully</string>
     <string name="chat_loading">Procesing request...</string>
+    <string name="main_sure">Are you sure you want to logout?</string>
+    <string name="main_yes">Yes</string>
+    <string name="main_cancel">Cancel</string>
+    <string name="main_permision">Ubication permit denied</string>
+    <string name="login_wrong_data">Wrong password</string>
+    <string name="login_error_login">Login error</string>
+    <string name="login_conexion">Conexion error</string>
+    <string name="profile_new">New</string>
+    <string name="profile_save">Save</string>
+    <string name="profile_cancel">Cancel</string>
+    <string name="profile_pop_updated">Profile updated</string>
+    <string name="profile_pop_error_update">Error while updating</string>
+    <string name="profile_deleted">Account deleted</string>
+    <string name="help_error_login">Log in to send a ticket</string>
+    <string name="help_ticket_error">There was an error sending the ticket</string>
+    <string name="signin_pop_termsnconds">You must accept the terms and conditions</string>
 </resources>

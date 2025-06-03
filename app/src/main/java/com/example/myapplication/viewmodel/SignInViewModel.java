@@ -69,7 +69,7 @@ public class SignInViewModel extends AndroidViewModel {
 
                     usuarioLiveData.setValue(usuario);
                 } else {
-                    errorLiveData.setValue(context.getString(R.string.help_error_login));
+                    errorLiveData.setValue(context.getString(R.string.login_conexion));
                 }
             }
 

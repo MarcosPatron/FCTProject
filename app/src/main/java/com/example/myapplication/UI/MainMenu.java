@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,38 +17,41 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.Utils.RecyclerMenu;
-import com.example.myapplication.Utils.SharedPreferencesManager;
+import com.example.myapplication.ViewModel.MainMenuViewModel;
 import com.example.myapplication.databinding.FragmentMainMenuBinding;
 
 public class MainMenu extends Fragment {
 
     private FragmentMainMenuBinding binding;
     private RecyclerMenu adapter;
+    private MainMenuViewModel viewModel;
 
     @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentMainMenuBinding.inflate(inflater, container, false);
-
-        //SharedPreferencesManager.getInstance(requireContext()).clearAllChats(); // Para eliminar todos los elementos del SharedPreferences
+        viewModel = new ViewModelProvider(this).get(MainMenuViewModel.class);
 
         adapter = new RecyclerMenu(requireContext());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerView.setAdapter(adapter);
 
-        // Botón para abrir el drawer-menu
+        // Observa los thread IDs
+        viewModel.getThreadIds().observe(getViewLifecycleOwner(), threadIds -> {
+            adapter.updateList(requireContext()); // actualiza desde SharedPreferences
+        });
+
+        // Abrir drawer
         binding.btnOpenDrawer.setOnClickListener(v -> {
             DrawerLayout drawerLayout = requireActivity().findViewById(R.id.drawer_layout);
             drawerLayout.openDrawer(GravityCompat.START);
         });
 
-        // Boton para nuevo chat
+        // Nuevo chat
         binding.fab.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.action_main_menu_to_chat);
         });
 
-        // Gesto de deslizar
+        // Deslizar para eliminar
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -57,23 +61,19 @@ public class MainMenu extends Fragment {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
+                String threadId = adapter.getItem(position);
 
-                SharedPreferencesManager.getInstance(requireContext()).removeChatThread(adapter.getItem(position));
-
-                adapter.removeItem(position);
-                adapter.notifyItemRemoved(position);
+                viewModel.deleteThread(threadId);
             }
         }).attachToRecyclerView(binding.recyclerView);
 
-        
         return binding.getRoot();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        // Actualizar la lista cuando se vuelve al fragmento
-        adapter.updateList(requireContext());
+        viewModel.loadThreadIds();
     }
 
     @Override

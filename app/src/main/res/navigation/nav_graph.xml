@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/chat"
-        android:name="com.example.myapplication.UI.Chat"
+        android:name="com.example.myapplication.ui.Chat"
         android:label="Chat"
         tools:layout="@layout/fragment_chat"/>
 
     <fragment
         android:id="@+id/main_menu"
-        android:name="com.example.myapplication.UI.MainMenu"
+        android:name="com.example.myapplication.ui.MainMenu"
         android:label="fragment_first"
         tools:layout="@layout/fragment_main_menu">
 
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/profile"
-        android:name="com.example.myapplication.UI.Profile"
+        android:name="com.example.myapplication.ui.Profile"
         android:label="Profile" >
         <action
             android:id="@+id/action_profile_to_logIn"
@@ -47,7 +47,7 @@
     </fragment>
     <fragment
         android:id="@+id/settings"
-        android:name="com.example.myapplication.UI.Settings"
+        android:name="com.example.myapplication.ui.Settings"
         android:label="Settings" >
         <action
             android:id="@+id/action_settings_to_help"
@@ -55,7 +55,7 @@
     </fragment>
     <fragment
         android:id="@+id/help"
-        android:name="com.example.myapplication.UI.Help"
+        android:name="com.example.myapplication.ui.Help"
         android:label="fragment_help"
         tools:layout="@layout/fragment_help" >
         <action
@@ -64,7 +64,7 @@
     </fragment>
     <fragment
         android:id="@+id/logIn"
-        android:name="com.example.myapplication.UI.LogIn"
+        android:name="com.example.myapplication.ui.LogIn"
         android:label="fragment_log_in"
         tools:layout="@layout/fragment_log_in" >
         <action
@@ -76,7 +76,7 @@
     </fragment>
     <fragment
         android:id="@+id/signIn"
-        android:name="com.example.myapplication.UI.SignIn"
+        android:name="com.example.myapplication.ui.SignIn"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
         <action

@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
     private static Retrofit retrofit;
 
-    public static final String BASE_URL = "http://10.0.2.2:5000";
+    public static final String BASE_URL = "https://fctpython.onrender.com";
 
     public static Retrofit getClient(Context context) {
         if (retrofit == null) {

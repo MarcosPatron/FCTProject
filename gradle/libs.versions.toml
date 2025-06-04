@@ -14,6 +14,8 @@ retrofit = "2.11.0"
 playServicesLocation = "21.3.0"
 activityKtx = "1.10.1"
 fragmentKtx = "1.6.1"
+rules = "1.6.1"
+mockito = "5.2.0"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -30,6 +32,9 @@ retrofit-converter-gson = { module = "com.squareup.retrofit2:converter-gson", ve
 play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
 activity-ktx = { group = "androidx.activity", name = "activity-ktx", version = "1.8.1" }
 fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
+rules = { group = "androidx.test", name = "rules", version.ref = "rules" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockito" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

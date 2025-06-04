@@ -75,7 +75,7 @@ public class Usuario {
     }
 
     public void setPassword(String password) {
-        this.password = this.password;
+        this.password = password;
     }
 
     // Metodos para manejar la sesion del usuario

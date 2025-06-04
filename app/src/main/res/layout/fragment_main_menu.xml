@@ -29,14 +29,6 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/centerImage"
-        android:layout_width="298dp"
-        android:layout_height="298dp"
-        android:layout_gravity="center"
-        android:contentDescription="Imagen Central"
-        />
-
     <TextView
         android:id="@+id/btnOpenDrawer"
         android:layout_width="52dp"

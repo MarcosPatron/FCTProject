@@ -69,7 +69,7 @@ public class ChatViewModelTest {
         viewModel.getIsUserMessage().observeForever(autoresIniciales::addAll);
 
         // Ejecutar método
-        viewModel.sendMessage("Hola IA", Arrays.asList(1.0, 2.0));
+        viewModel.sendMessage("test_user","Hola IA", Arrays.asList(1.0, 2.0));
 
         // Verificaciones
         List<String> actualMsgs = viewModel.getMessages().getValue();

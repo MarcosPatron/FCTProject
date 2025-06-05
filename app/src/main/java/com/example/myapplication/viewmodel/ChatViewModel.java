@@ -36,7 +36,6 @@ public class ChatViewModel extends AndroidViewModel {
         prefs = SharedPreferencesManager.getInstance(application);
     }
 
-    // Carga mensajes de un chat ya creado
     public void loadMessages(String id) {
         this.threadId = id;
         ChatClass chat = prefs.getChatThread(id);
@@ -46,8 +45,7 @@ public class ChatViewModel extends AndroidViewModel {
         }
     }
 
-    // Envia el mensaje
-    public void sendMessage(String userMessage, List<Double> coordinates) {
+    public void sendMessage(String username, String userMessage, List<Double> coordinates) {
         if (userMessage.isEmpty()) return;
 
         List<String> currentMessages = new ArrayList<>(messages.getValue());
@@ -56,7 +54,6 @@ public class ChatViewModel extends AndroidViewModel {
         currentMessages.add(userMessage);
         currentFlags.add(true);
 
-        // Mensaje de "procesando"/"processing"
         currentMessages.add(getApplication().getString(R.string.chat_loading));
         currentFlags.add(false);
 
@@ -64,7 +61,9 @@ public class ChatViewModel extends AndroidViewModel {
         isUserMessage.setValue(currentFlags);
 
         ApiService api = ApiClient.getClient(getApplication()).create(ApiService.class);
-        Call<MessageResponse> call = api.sendMessage(new MessageRequest(userMessage, threadId, coordinates));
+        Call<MessageResponse> call = api.sendMessage(
+                new MessageRequest(username, userMessage, threadId, coordinates)
+        );
 
         call.enqueue(new Callback<MessageResponse>() {
             @Override
@@ -74,7 +73,6 @@ public class ChatViewModel extends AndroidViewModel {
                 MessageResponse res = response.body();
                 threadId = res.getThreadId();
 
-                // Reemplazar "procesando" con respuesta real
                 int lastIndex = currentMessages.size() - 1;
                 if (getApplication().getString(R.string.chat_loading).equals(currentMessages.get(lastIndex))) {
                     currentMessages.remove(lastIndex);
@@ -92,7 +90,6 @@ public class ChatViewModel extends AndroidViewModel {
 
             @Override
             public void onFailure(@NonNull Call<MessageResponse> call, @NonNull Throwable t) {
-                // Eliminar el mensaje de "procesando" si hay error
                 int lastIndex = currentMessages.size() - 1;
                 if (getApplication().getString(R.string.chat_loading).equals(currentMessages.get(lastIndex))) {
                     currentMessages.remove(lastIndex);
@@ -104,7 +101,6 @@ public class ChatViewModel extends AndroidViewModel {
         });
     }
 
-    // Guarda el chat y aparece en MainMenu
     private void saveThread(List<String> msgs, List<Boolean> flags) {
         ChatClass chat = new ChatClass(threadId, msgs, flags);
         prefs.saveChatThread(chat);

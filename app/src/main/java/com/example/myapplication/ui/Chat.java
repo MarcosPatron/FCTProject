@@ -48,8 +48,10 @@ public class Chat extends Fragment {
             binding.recyclerChat.scrollToPosition(flags.size() - 1);
         });
 
-        // Cargar mensajes anteriores si threadId existe o no es null.
+        // Obtener threadId y username desde argumentos
         String threadId = getArguments() != null ? getArguments().getString("threadId") : null;
+        String username = getArguments() != null ? getArguments().getString("username") : "invitado";
+
         if (threadId != null) {
             viewModel.loadMessages(threadId);
         }
@@ -61,7 +63,7 @@ public class Chat extends Fragment {
             }
 
             binding.consulta.setText("");
-            viewModel.sendMessage(msg, Arrays.asList(MainActivity.latitude, MainActivity.longitude));
+            viewModel.sendMessage(username, msg, Arrays.asList(MainActivity.latitude, MainActivity.longitude));
         });
 
         return binding.getRoot();

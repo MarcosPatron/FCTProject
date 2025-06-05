@@ -5,21 +5,29 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class MessageRequest { // Clase que crea los datos para enviarlos al backend
+
+    @SerializedName("Username")
+    private String username;
     @SerializedName("Message")
     private String mensaje;
-
     @SerializedName("ThreadId")
     private String threadId;
-
     @SerializedName("coordinates")
     private List<Double> coordinates; // Tomo las coordenadas en MainActivity L: 113
 
-    public MessageRequest(String mensaje, String threadId, List<Double> coordinates) {
+    public MessageRequest(String username, String mensaje, String threadId, List<Double> coordinates) {
+        this.username = username;
         this.mensaje = mensaje;
         this.threadId = threadId;
         this.coordinates = coordinates;
     }
 
+    public String getUsername() {
+        return username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
+    }
     public String getMensaje() {
         return mensaje;
     }
@@ -39,4 +47,5 @@ public class MessageRequest { // Clase que crea los datos para enviarlos al back
         this.coordinates = coordinates;
     }
 }
+
 

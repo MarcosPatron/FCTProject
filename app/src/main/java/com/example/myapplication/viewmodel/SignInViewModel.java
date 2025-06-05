@@ -23,18 +23,18 @@ public class SignInViewModel extends AndroidViewModel {
     private final MutableLiveData<Usuario> usuarioLiveData = new MutableLiveData<>();
     private final MutableLiveData<String> errorLiveData = new MutableLiveData<>();
 
-    public SignInViewModel(@NonNull Application application) {
-        super(application);
-    }
-
     public LiveData<Usuario> getUsuarioLiveData() {
         return usuarioLiveData;
     }
-
     public LiveData<String> getErrorLiveData() {
         return errorLiveData;
     }
 
+    public SignInViewModel(@NonNull Application application) {
+        super(application);
+    }
+
+    // Crea cuenta en la base de datos mediante el backend
     public void crearCuenta(Context context, String fullname, String username, String email, String password, String confirmPassword, boolean aceptaTerminos) {
         if (fullname.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             errorLiveData.setValue(context.getString(R.string.signin_fields_pop));

@@ -23,8 +23,6 @@ import com.example.myapplication.databinding.FragmentHelpBinding;
 import java.util.Arrays;
 import java.util.List;
 
-
-
 public class Help extends Fragment {
 
     private FragmentHelpBinding binding;
@@ -44,7 +42,7 @@ public class Help extends Fragment {
         setupSpinner(binding.spinnerCategory, categories);
         setupSpinner(binding.spinnerPriority, priorities);
 
-        // Botón drawer
+        // Boton menu drawer
         binding.btnOpenDrawer.setOnClickListener(v -> {
             DrawerLayout drawerLayout = requireActivity().findViewById(R.id.drawer_layout);
             drawerLayout.openDrawer(GravityCompat.START);

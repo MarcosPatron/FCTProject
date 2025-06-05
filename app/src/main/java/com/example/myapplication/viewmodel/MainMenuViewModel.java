@@ -18,15 +18,16 @@ public class MainMenuViewModel extends AndroidViewModel {
     private final MutableLiveData<List<String>> threadIdsLiveData = new MutableLiveData<>();
     private final SharedPreferencesManager prefsManager;
 
+    public LiveData<List<String>> getThreadIds() {
+        return threadIdsLiveData;
+    }
+
     public MainMenuViewModel(@NonNull Application application) {
         super(application);
         prefsManager = SharedPreferencesManager.getInstance(application.getApplicationContext());
     }
 
-    public LiveData<List<String>> getThreadIds() {
-        return threadIdsLiveData;
-    }
-
+    // Carga los threadIds de SharedPreferences
     public void loadThreadIds() {
         List<ChatClass> allChats = prefsManager.getAllChatThreads();
         List<String> threadIds = new ArrayList<>();
@@ -38,6 +39,7 @@ public class MainMenuViewModel extends AndroidViewModel {
         threadIdsLiveData.setValue(threadIds);
     }
 
+    // Elimina un elemento del Recycler
     public void deleteThread(String threadId) {
         prefsManager.removeChatThread(threadId);
         loadThreadIds(); // Refresca la lista después de eliminar

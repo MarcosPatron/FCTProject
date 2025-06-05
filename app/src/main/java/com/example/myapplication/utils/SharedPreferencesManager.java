@@ -36,7 +36,7 @@ public class SharedPreferencesManager {
         return instance;
     }
 
-    // Guardar un chat específico
+    // Guarda un chat
     public void saveChatThread(ChatClass chatClass) {
         if (chatClass.getThreadId() == null) {
             Log.e("SAVE_ERROR", "Thread ID es nulo. No se puede guardar el chat.");
@@ -56,37 +56,37 @@ public class SharedPreferencesManager {
         }
     }
 
-    // Obtener un chat específico
+    // Obtiene un chat
     public ChatClass getChatThread(String threadId) {
         Map<String, ChatClass> chatMap = getChatThreadsMap();
         return chatMap.get(threadId);
     }
 
-    // Obtener todos los chats
+    // Obtiene todos los chats
     public List<ChatClass> getAllChatThreads() {
         return new ArrayList<>(getChatThreadsMap().values());
     }
 
-    // Convertir el JSON a Map para acceso eficiente
+    // Convierte el JSON a Map
     Map<String, ChatClass> getChatThreadsMap() {
         String json = sharedPreferences.getString(CHAT_THREADS_KEY, null);
         Type type = new TypeToken<Map<String, ChatClass>>() {}.getType();
         return json == null ? new HashMap<>() : gson.fromJson(json, type);
     }
 
-    // Eliminar un chat específico
+    // Elimina un chat
     public void removeChatThread(String threadId) {
         Map<String, ChatClass> chatMap = getChatThreadsMap();
         chatMap.remove(threadId);
         editor.putString(CHAT_THREADS_KEY, gson.toJson(chatMap)).commit();
     }
 
-    // Limpiar todos los chats
+    // Limpia todos los chats
     public void clearAllChats() {
         editor.remove(CHAT_THREADS_KEY).commit();
     }
 
-    // Método solo para pruebas, permite reiniciar el singleton
+    // METODO SOLO PARA PRUEBAS, permite reiniciar el singleton
     public static void resetInstance() {
         instance = null;
     }

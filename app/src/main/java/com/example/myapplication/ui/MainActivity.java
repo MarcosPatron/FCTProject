@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         if (navHostFragment != null) {
             navController = navHostFragment.getNavController();
         }
-
+        // Drawer menu
         appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.logIn, R.id.settings, R.id.help, R.id.profile
         ).setOpenableLayout(binding.drawerLayout).build();
@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
+        // Cambia el menu drawer dependiendo si la sesion esta activa
         binding.navView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
             boolean sesionActiva = Usuario.sesionActiva(this);
 
@@ -83,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
             binding.navView.getMenu().findItem(R.id.help).setVisible(sesionActiva);
         });
 
+        // Ventana emergente para confirmar el cierre de sesion
         binding.navView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
 
@@ -128,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, appBarConfiguration) || super.onSupportNavigateUp();
     }
 
+    // Pide permiso al usuario
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
@@ -141,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Toma la localizacion
     private void getLastLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {

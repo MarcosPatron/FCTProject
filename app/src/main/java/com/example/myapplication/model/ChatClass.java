@@ -2,19 +2,17 @@ package com.example.myapplication.model;
 
 import java.util.List;
 
-public class ChatClass {
+public class ChatClass { // Clase para crear el chat del asistente
     private String threadId;
     private List<String> messages;
     private List<Boolean> isUserMessage;
 
-    // Constructor
     public ChatClass(String threadId, List<String> messages, List<Boolean> isUserMessage) {
         this.threadId = threadId;
         this.messages = messages;
         this.isUserMessage = isUserMessage;
     }
 
-    // Getters y setters
     public String getThreadId() {
         return threadId;
     }

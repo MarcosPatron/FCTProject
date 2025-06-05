@@ -39,12 +39,13 @@ public class Profile extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
 
+        // Abrir drawer
         binding.btnOpenDrawer.setOnClickListener(v -> {
             DrawerLayout drawerLayout = requireActivity().findViewById(R.id.drawer_layout);
             drawerLayout.openDrawer(GravityCompat.START);
         });
 
-        // Observadores
+        // Observers
         viewModel.getUsuarioLiveData().observe(getViewLifecycleOwner(), usuario -> {
             binding.tvUsername.setText(usuario.getUsername());
             binding.tvFullName.setText(usuario.getFullname());
@@ -74,6 +75,7 @@ public class Profile extends Fragment {
         viewModel.cargarUsuario(requireContext());
     }
 
+    // Abre cuadros de dialogo al editar usuario
     private void mostrarDialogoEdicion(String campo, String valorActual) {
         Context context = requireContext();
         LayoutInflater inflater = LayoutInflater.from(context);

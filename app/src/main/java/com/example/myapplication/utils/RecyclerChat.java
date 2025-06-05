@@ -44,7 +44,7 @@ public class RecyclerChat extends RecyclerView.Adapter<RecyclerChat.ChatViewHold
         String message = messages.get(position);
         holder.tvMessage.setText(message);
 
-        // Poner un mensaje para hacer saber que se esta procesando la petición
+        // Poner un mensaje para hacer saber que se ha enviado el mensaje
         if(holder.tvMessage.getText().equals("Procesando petición...") || holder.tvMessage.getText().equals("Procesing request...")){
             ObjectAnimator anim = ObjectAnimator.ofArgb(holder.tvMessage, "textColor", Color.DKGRAY, Color.LTGRAY);
             anim.setDuration(800);

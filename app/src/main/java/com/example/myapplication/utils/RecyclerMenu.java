@@ -26,6 +26,7 @@ public class RecyclerMenu extends RecyclerView.Adapter<RecyclerMenu.ThreadViewHo
         this.threadList = loadThreadList(context);
     }
 
+    // Saca los hilos de SharedPreferences
     private List<String> loadThreadList(Context context) {
         SharedPreferencesManager manager = SharedPreferencesManager.getInstance(context);
         Map<String, ChatClass> chatMap = manager.getChatThreadsMap();
@@ -58,20 +59,24 @@ public class RecyclerMenu extends RecyclerView.Adapter<RecyclerMenu.ThreadViewHo
         });
     }
 
+    // Toma el tamaño de la lista
     @Override
     public int getItemCount() {
         return threadList != null ? threadList.size() : 0;
     }
 
+    // Eliminar item de la lista
     public void removeItem(int position) {
         threadList.remove(position);
         notifyItemRemoved(position);
     }
 
+    // Toma item de la lista
     public String getItem(int position) {
         return threadList.get(position);
     }
 
+    // Clase con los datos que muestra el menu principal en la UI
     static class ThreadViewHolder extends RecyclerView.ViewHolder {
         TextView tvTitle, tvThreadId;
 

@@ -22,10 +22,6 @@ public class ProfileViewModel extends AndroidViewModel {
     private final MutableLiveData<String> mensajeLiveData = new MutableLiveData<>();
     private final MutableLiveData<Boolean> usuarioEliminado = new MutableLiveData<>();
 
-    public ProfileViewModel(@NonNull Application application) {
-        super(application);
-    }
-
     public LiveData<Usuario> getUsuarioLiveData() {
         return usuarioLiveData;
     }
@@ -38,6 +34,11 @@ public class ProfileViewModel extends AndroidViewModel {
         return usuarioEliminado;
     }
 
+    public ProfileViewModel(@NonNull Application application) {
+        super(application);
+    }
+
+    // Obtiene la sesion
     public void cargarUsuario(Context context) {
         Usuario u = Usuario.obtenerSesion(context);
         if (u == null) {
@@ -47,6 +48,7 @@ public class ProfileViewModel extends AndroidViewModel {
         }
     }
 
+    // Edita el usuario y se actualiza
     public void editarUsuario(Context context, String campo, String nuevoValor, String passwordConfirmacion) {
         Usuario original = Usuario.obtenerSesion(context);
 
@@ -103,6 +105,7 @@ public class ProfileViewModel extends AndroidViewModel {
         });
     }
 
+    // Elimina el usuario y cierra sesion
     public void eliminarUsuario(Context context) {
         Usuario usuario = Usuario.obtenerSesion(context);
         if (usuario == null) {

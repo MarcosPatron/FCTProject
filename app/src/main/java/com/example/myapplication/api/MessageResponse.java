@@ -1,6 +1,6 @@
 package com.example.myapplication.api;
 
-public class MessageResponse {
+public class MessageResponse { // Clase que almacena los mensajes que vienen del backend
     private String threadId;
     private String message;
     private String description;

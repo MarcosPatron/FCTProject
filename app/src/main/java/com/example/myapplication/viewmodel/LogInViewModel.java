@@ -22,18 +22,18 @@ public class LogInViewModel extends AndroidViewModel {
     private final MutableLiveData<Usuario> usuarioLiveData = new MutableLiveData<>();
     private final MutableLiveData<String> errorLiveData = new MutableLiveData<>();
 
-    public LogInViewModel(@NonNull Application application) {
-        super(application);
-    }
-
     public LiveData<Usuario> getUsuarioLiveData() {
         return usuarioLiveData;
     }
-
     public LiveData<String> getErrorLiveData() {
         return errorLiveData;
     }
 
+    public LogInViewModel(@NonNull Application application) {
+        super(application);
+    }
+
+    // Hace login con llamada al backend
     public void login(String username, String password) {
         if (username.isEmpty() || password.isEmpty()) {
             errorLiveData.setValue(getApplication().getString(R.string.signin_fields_pop));

@@ -23,14 +23,14 @@ public class AuthInterceptor implements Interceptor {
         Request originalRequest = chain.request();
         String path = originalRequest.url().encodedPath();
 
-        // Endpoints que necesitan autenticacion con JWT
+        // Endpoints que necesitan autentificacion con JWT
         boolean needsAuth = path.contains("/get_user") ||
                 path.contains("/edit_user") ||
                 path.contains("/validate-token") ||
                 path.contains("/send_ticket") ||
                 path.contains("/delete_user");
 
-        if (needsAuth) {
+        if (needsAuth) { // Si necesitan tomo el JWT del user guardado
             SharedPreferences prefs = context.getSharedPreferences("MY_APP_PREFS", Context.MODE_PRIVATE);
             String token = prefs.getString("jwt_token", null);
 

@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class MessageRequest {
+public class MessageRequest { // Clase que crea los datos para enviarlos al backend
     @SerializedName("Message")
     private String mensaje;
 
@@ -12,7 +12,7 @@ public class MessageRequest {
     private String threadId;
 
     @SerializedName("coordinates")
-    private List<Double> coordinates;
+    private List<Double> coordinates; // Tomo las coordenadas en MainActivity L: 113
 
     public MessageRequest(String mensaje, String threadId, List<Double> coordinates) {
         this.mensaje = mensaje;

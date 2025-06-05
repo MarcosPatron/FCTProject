@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 
-public class Usuario {
+public class Usuario { // Clase que almacena y maneja el usuario en la aplicacion
 
     private String fullname;
     private String username; // Unico

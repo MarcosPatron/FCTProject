@@ -43,12 +43,12 @@ public class Settings extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Spinner de idioma
+        // Inicializar spinner
         List<String> idiomas = Arrays.asList("Español", "English");
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, idiomas);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinnerLanguage.setAdapter(adapter);
-
+        // Dar funcion spinner
         binding.spinnerLanguage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -72,7 +72,7 @@ public class Settings extends Fragment {
         });
 
 
-        // Botón para abrir el drawer-menu
+        // Abrir drawer
         binding.btnOpenDrawer.setOnClickListener(v -> {
             DrawerLayout drawerLayout = requireActivity().findViewById(R.id.drawer_layout);
             drawerLayout.openDrawer(GravityCompat.START);
@@ -92,6 +92,7 @@ public class Settings extends Fragment {
         });
     }
 
+    // Abre los terminos y condiciones o la privacidad
     private void showPopupWindow() {
         LayoutInflater inflater = LayoutInflater.from(requireContext());
 
@@ -123,6 +124,7 @@ public class Settings extends Fragment {
         popupWindow.setOnDismissListener(() -> rootView.removeView(dimView));
     }
 
+    // Cambiar idioma
     private void setLocale(String languageCode) {
         Locale locale = new Locale(languageCode);
         Locale.setDefault(locale);

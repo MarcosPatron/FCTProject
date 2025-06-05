@@ -3,7 +3,7 @@ package com.example.myapplication.model;
 import com.example.myapplication.utils.Categoria;
 import com.example.myapplication.utils.Prioridad;
 
-public class Ticket {
+public class Ticket { // Clase que crea el ticket enviado al backend
 
     private Usuario usuario;
     private Categoria categoria;

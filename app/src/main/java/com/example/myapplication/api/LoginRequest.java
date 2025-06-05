@@ -1,6 +1,6 @@
 package com.example.myapplication.api;
 
-public class LoginRequest {
+public class LoginRequest { // Clase necesaria para iniciar sesion
     private String username;
     private String password;
 

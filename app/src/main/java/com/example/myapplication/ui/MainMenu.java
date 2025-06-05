@@ -35,9 +35,9 @@ public class MainMenu extends Fragment {
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerView.setAdapter(adapter);
 
-        // Observa los thread IDs
+        // Observer de los threadIds
         viewModel.getThreadIds().observe(getViewLifecycleOwner(), threadIds -> {
-            adapter.updateList(requireContext()); // actualiza desde SharedPreferences
+            adapter.updateList(requireContext()); // Actualiza desde SharedPreferences
         });
 
         // Abrir drawer

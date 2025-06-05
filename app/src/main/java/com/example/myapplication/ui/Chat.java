@@ -35,7 +35,7 @@ public class Chat extends Fragment {
         binding.recyclerChat.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerChat.setAdapter(adapter);
 
-        // Observadores
+        // Observers
         viewModel.getMessages().observe(getViewLifecycleOwner(), messages -> {
             adapter = new RecyclerChat(messages, viewModel.getIsUserMessage().getValue());
             binding.recyclerChat.setAdapter(adapter);
@@ -48,7 +48,7 @@ public class Chat extends Fragment {
             binding.recyclerChat.scrollToPosition(flags.size() - 1);
         });
 
-        // Cargar mensajes anteriores si hay threadId
+        // Cargar mensajes anteriores si threadId existe o no es null.
         String threadId = getArguments() != null ? getArguments().getString("threadId") : null;
         if (threadId != null) {
             viewModel.loadMessages(threadId);

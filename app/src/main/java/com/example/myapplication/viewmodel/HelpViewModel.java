@@ -24,18 +24,18 @@ public class HelpViewModel extends AndroidViewModel {
     private final MutableLiveData<Boolean> ticketSuccess = new MutableLiveData<>();
     private final MutableLiveData<String> errorMessage = new MutableLiveData<>();
 
-    public HelpViewModel(@NonNull Application application) {
-        super(application);
-    }
-
     public LiveData<Boolean> getTicketSuccess() {
         return ticketSuccess;
     }
-
     public LiveData<String> getErrorMessage() {
         return errorMessage;
     }
 
+    public HelpViewModel(@NonNull Application application) {
+        super(application);
+    }
+
+    // Envia el ticket al backend
     public void sendTicket(String category, String priority, String description, Usuario usuario) {
         if (usuario == null) {
             errorMessage.setValue(getApplication().getString(R.string.help_error_login));
@@ -75,6 +75,7 @@ public class HelpViewModel extends AndroidViewModel {
         });
     }
 
+    // Pasa de String a Enum(Categoria)
     private Categoria getCategoriaEnum(String selectedText) {
         if (selectedText.equals(getApplication().getString(R.string.help_prio_acc))) {
             return Categoria.Cuenta;
@@ -85,6 +86,7 @@ public class HelpViewModel extends AndroidViewModel {
         }
     }
 
+    // Pasa de String a Enum(Prioridad)
     private Prioridad getPrioridadEnum(String selectedText) {
         if (selectedText.equals(getApplication().getString(R.string.help_cat_low))) {
             return Prioridad.baja;

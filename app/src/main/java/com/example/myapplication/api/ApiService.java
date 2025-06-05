@@ -18,7 +18,6 @@ public interface ApiService {
     Call<MessageResponse> sendMessage(@Body MessageRequest body);
 
     // USUARIO
-
     @GET("/api/backend/get_user")
     Call<Usuario> getPerfil();
 

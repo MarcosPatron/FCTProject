@@ -25,8 +25,10 @@ public class SignIn extends Fragment {
         binding = FragmentSignInBinding.inflate(inflater, container, false);
         viewModel = new ViewModelProvider(this).get(SignInViewModel.class);
 
+        // Boton
         binding.btnCrearCuenta.setOnClickListener(this::crearCuenta);
 
+        // Observers
         viewModel.getErrorLiveData().observe(getViewLifecycleOwner(), this::mostrarError);
         viewModel.getUsuarioLiveData().observe(getViewLifecycleOwner(), usuario -> {
             if (usuario != null) {
@@ -37,16 +39,19 @@ public class SignIn extends Fragment {
         return binding.getRoot();
     }
 
+    // Muestra error si lo hay
     private void mostrarError(String mensaje) {
         binding.tvErrorMessage.setText(mensaje);
         binding.tvErrorMessage.setVisibility(View.VISIBLE);
     }
 
+    // Oculta el error
     private void ocultarError() {
         binding.tvErrorMessage.setText("");
         binding.tvErrorMessage.setVisibility(View.GONE);
     }
 
+    // Crea la cuenta y la mete en el SharedPreferences
     private void crearCuenta(View v) {
         ocultarError();
 

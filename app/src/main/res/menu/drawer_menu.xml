@@ -5,6 +5,10 @@
         android:icon="@drawable/mainmenu_icon"
         android:title="@string/menu_mainmenu" />
     <item
+        android:id="@+id/recommendations"
+        android:icon="@drawable/baseline_recommend_24"
+        android:title="@string/recomendaciones" />
+    <item
         android:id="@+id/profile"
         android:icon="@drawable/profile_icon"
         android:title="@string/menu_profile" />

@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         }
         // Drawer menu
         appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.logIn, R.id.settings, R.id.help, R.id.profile
+                R.id.logIn, R.id.recommendations, R.id.settings, R.id.help, R.id.profile
         ).setOpenableLayout(binding.drawerLayout).build();
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);

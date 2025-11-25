@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_main_menu_to_logIn"
             app:destination="@id/logIn" />
+        <action
+            android:id="@+id/action_main_menu_to_recommendations"
+            app:destination="@id/recommendations" />
     </fragment>
     <fragment
         android:id="@+id/profile"
@@ -83,4 +86,9 @@
             android:id="@+id/action_signIn_to_profile"
             app:destination="@id/profile" />
     </fragment>
+    <fragment
+        android:id="@+id/recommendations"
+        android:name="com.example.myapplication.ui.Recommendations"
+        android:label="fragment_recommendations"
+        tools:layout="@layout/fragment_recommendations" />
 </navigation>

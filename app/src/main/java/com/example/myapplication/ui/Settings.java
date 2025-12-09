@@ -71,13 +71,6 @@ public class Settings extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {}
         });
 
-
-        // Abrir drawer
-        binding.btnOpenDrawer.setOnClickListener(v -> {
-            DrawerLayout drawerLayout = requireActivity().findViewById(R.id.drawer_layout);
-            drawerLayout.openDrawer(GravityCompat.START);
-        });
-
         // TextViews clicables
         binding.tvTerms.setOnClickListener(v -> {
             showPopupWindow();

@@ -8,14 +8,13 @@
     android:background="@color/white">
 
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="61dp"
         android:padding="8dp"
-        android:scrollbars="vertical"/>
+        android:scrollbars="vertical" />
 
     <TextView
         android:id="@+id/tvHeader"
@@ -28,6 +27,32 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvUserStatus"
+        android:layout_width="304dp"
+        android:layout_height="102dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="60dp"
+        android:gravity="center"
+        android:text="No tienes una sesión iniciada, iniciala para que se guarden los chats dentro de la aplicación."
+        android:textColor="#737373"
+        android:textSize="18dp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/tvUserHelp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="800dp"
+        android:layout_marginEnd="80dp"
+        android:gravity="end"
+        android:text="Accede a nuestro asistente con este botón."
+        android:textColor="#737373"
+        android:textSize="16dp"
+        android:textStyle="italic" />
 
     <TextView
         android:id="@+id/btnOpenDrawer"

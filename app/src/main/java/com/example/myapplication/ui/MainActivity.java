@@ -68,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
         ).setOpenableLayout(binding.drawerLayout).build();
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+
+        // Ocultar la ActionBar del DrawerMenu
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
         NavigationUI.setupWithNavController(binding.navView, navController);
 
         // Cambia el menu drawer dependiendo si la sesion esta activa

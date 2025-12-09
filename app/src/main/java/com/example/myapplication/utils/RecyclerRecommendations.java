@@ -1,11 +1,13 @@
 package com.example.myapplication.utils;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
@@ -33,6 +35,17 @@ public class RecyclerRecommendations extends RecyclerView.Adapter<RecyclerRecomm
         Recommendation recommendation = lista.get(position);
         holder.tvTitulo.setText(recommendation.getTitle());
         holder.imgRecommendation.setImageResource(recommendation.getImgId());
+
+        holder.itemView.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("title", recommendation.getTitle());
+            bundle.putString("description", recommendation.getDescription());
+            bundle.putInt("imgId", recommendation.getImgId());
+            bundle.putString("textLink",recommendation.getUrl());
+
+            Navigation.findNavController(v)
+                    .navigate(R.id.action_recommendations_to_recommendationsInfo, bundle);
+        });
     }
 
     @Override

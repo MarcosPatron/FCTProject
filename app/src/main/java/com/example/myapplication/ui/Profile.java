@@ -39,12 +39,6 @@ public class Profile extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
 
-        // Abrir drawer
-        binding.btnOpenDrawer.setOnClickListener(v -> {
-            DrawerLayout drawerLayout = requireActivity().findViewById(R.id.drawer_layout);
-            drawerLayout.openDrawer(GravityCompat.START);
-        });
-
         // Observers
         viewModel.getUsuarioLiveData().observe(getViewLifecycleOwner(), usuario -> {
             binding.tvUsername.setText(usuario.getUsername());

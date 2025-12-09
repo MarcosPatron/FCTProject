@@ -42,12 +42,6 @@ public class Help extends Fragment {
         setupSpinner(binding.spinnerCategory, categories);
         setupSpinner(binding.spinnerPriority, priorities);
 
-        // Boton menu drawer
-        binding.btnOpenDrawer.setOnClickListener(v -> {
-            DrawerLayout drawerLayout = requireActivity().findViewById(R.id.drawer_layout);
-            drawerLayout.openDrawer(GravityCompat.START);
-        });
-
         // Observers
         viewModel.getTicketSuccess().observe(getViewLifecycleOwner(), success -> {
             if (success) {

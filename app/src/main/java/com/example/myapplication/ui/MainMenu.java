@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.model.Usuario;
 import com.example.myapplication.utils.RecyclerMenu;
 import com.example.myapplication.viewmodel.MainMenuViewModel;
 import com.example.myapplication.databinding.FragmentMainMenuBinding;
@@ -37,8 +38,18 @@ public class MainMenu extends Fragment {
 
         // Observer de los threadIds
         viewModel.getThreadIds().observe(getViewLifecycleOwner(), threadIds -> {
-            adapter.updateList(requireContext()); // Actualiza desde SharedPreferences
+            adapter.updateList(requireContext()); // Actualizar desde SharedPreferences
         });
+
+        boolean sesionActiva = Usuario.sesionActiva(requireContext());
+
+        if (sesionActiva) {
+            binding.tvUserStatus.setVisibility(View.GONE);  // Ocultar
+            binding.recyclerView.setVisibility(View.VISIBLE);
+        } else {
+            binding.tvUserStatus.setVisibility(View.VISIBLE);  // Mostrar
+            binding.recyclerView.setVisibility(View.GONE);
+        }
 
         // Abrir drawer
         binding.btnOpenDrawer.setOnClickListener(v -> {

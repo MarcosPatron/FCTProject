@@ -1,7 +1,5 @@
 package com.example.myapplication.utils;
 
-import android.animation.ObjectAnimator;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +15,7 @@ import java.util.List;
 public class RecyclerChat extends RecyclerView.Adapter<RecyclerChat.ChatViewHolder> {
 
     private List<String> messages;
-    private List<Boolean> isUserMessage; // Si es mensaje del usuario = true
+    private List<Boolean> isUserMessage;
 
     public RecyclerChat(List<String> messages, List<Boolean> isUserMessage) {
         this.messages = messages;
@@ -33,8 +31,9 @@ public class RecyclerChat extends RecyclerView.Adapter<RecyclerChat.ChatViewHold
     @Override
     public ChatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         int layout = (viewType == 1)
-                ? R.layout.chat_item_user // Mensaje del usuario, posicion derecha
-                : R.layout.chat_item_received; // Mensaje recibido, posicion izquierda
+                ? R.layout.chat_item_user
+                : R.layout.chat_item_received;
+
         View view = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
         return new ChatViewHolder(view);
     }
@@ -44,13 +43,16 @@ public class RecyclerChat extends RecyclerView.Adapter<RecyclerChat.ChatViewHold
         String message = messages.get(position);
         holder.tvMessage.setText(message);
 
-        // Poner un mensaje para hacer saber que se ha enviado el mensaje
-        if(holder.tvMessage.getText().equals("Procesando petición...") || holder.tvMessage.getText().equals("Procesing request...")){
-            ObjectAnimator anim = ObjectAnimator.ofArgb(holder.tvMessage, "textColor", Color.DKGRAY, Color.LTGRAY);
-            anim.setDuration(800);
-            anim.setRepeatMode(ObjectAnimator.REVERSE);
-            anim.setRepeatCount(ObjectAnimator.INFINITE);
-            anim.start();
+        // Animación ligera solo si es "Procesando petición..."
+        if (message.equals("Procesando petición...") || message.equals("Procesing request...")) {
+            holder.tvMessage.animate()
+                    .alpha(0.5f)
+                    .setDuration(800)
+                    .withEndAction(() -> holder.tvMessage.animate()
+                            .alpha(1f)
+                            .setDuration(800)
+                            .start())
+                    .start();
         }
     }
 
@@ -67,5 +69,11 @@ public class RecyclerChat extends RecyclerView.Adapter<RecyclerChat.ChatViewHold
             tvMessage = itemView.findViewById(R.id.tvMessage);
         }
     }
-}
 
+    // Método para actualizar datos sin recrear el adapter
+    public void updateData(List<String> newMessages, List<Boolean> newFlags) {
+        this.messages = newMessages;
+        this.isUserMessage = newFlags;
+        notifyDataSetChanged();
+    }
+}

@@ -25,15 +25,27 @@ public class ChatViewModel extends AndroidViewModel {
 
     private final MutableLiveData<List<String>> messages = new MutableLiveData<>(new ArrayList<>());
     private final MutableLiveData<List<Boolean>> isUserMessage = new MutableLiveData<>(new ArrayList<>());
+    private final MutableLiveData<Boolean> canSend = new MutableLiveData<>(true);
     private final SharedPreferencesManager prefs;
     private String threadId;
 
+    // ---------- NUEVO: límite mensajes invitados ----------
+    private static final int MAX_GUEST_MESSAGES = 5;
+    private int guestMessageCount = 0;
+
     public LiveData<List<String>> getMessages() { return messages; }
     public LiveData<List<Boolean>> getIsUserMessage() { return isUserMessage; }
+    public LiveData<Boolean> getCanSend() { return canSend; }
 
     public ChatViewModel(@NonNull Application application) {
         super(application);
         prefs = SharedPreferencesManager.getInstance(application);
+    }
+
+    // ---------- NUEVO: función para permitir o no enviar ----------
+    public boolean canGuestSendMessage(String username) {
+        if (!username.equals("invitado")) return true;
+        return guestMessageCount < MAX_GUEST_MESSAGES;
     }
 
     public void loadMessages(String id) {
@@ -47,6 +59,12 @@ public class ChatViewModel extends AndroidViewModel {
 
     public void sendMessage(String username, String userMessage, List<Double> coordinates) {
         if (userMessage.isEmpty()) return;
+
+        canSend.setValue(false);
+
+        if (username.equals("invitado")) {
+            guestMessageCount++;
+        }
 
         List<String> currentMessages = new ArrayList<>(messages.getValue());
         List<Boolean> currentFlags = new ArrayList<>(isUserMessage.getValue());
@@ -85,6 +103,8 @@ public class ChatViewModel extends AndroidViewModel {
                 messages.setValue(currentMessages);
                 isUserMessage.setValue(currentFlags);
 
+                canSend.setValue(true);
+
                 saveThread(currentMessages, currentFlags);
             }
 
@@ -96,6 +116,8 @@ public class ChatViewModel extends AndroidViewModel {
                     currentFlags.remove(lastIndex);
                     messages.setValue(currentMessages);
                     isUserMessage.setValue(currentFlags);
+
+                    canSend.setValue(true);
                 }
             }
         });

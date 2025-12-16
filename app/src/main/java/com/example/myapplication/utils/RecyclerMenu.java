@@ -48,7 +48,7 @@ public class RecyclerMenu extends RecyclerView.Adapter<RecyclerMenu.ThreadViewHo
     @Override
     public void onBindViewHolder(@NonNull ThreadViewHolder holder, int position) {
         String threadId = threadList.get(position);
-        holder.tvTitle.setText("Chat" + " " + (position + 1));
+        holder.tvTitle.setText("Restaurante para comer");
 
         holder.tvThreadId.setText(threadId);
 

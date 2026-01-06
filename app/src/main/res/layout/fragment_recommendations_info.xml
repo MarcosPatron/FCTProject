@@ -61,14 +61,14 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="180dp"
                 android:backgroundTint="@color/dark_green"
-                android:text="Preguntar al asistente sobre este lugar"
+                android:text="@string/preguntar_al_asistente_sobre_este_lugar"
                 app:cornerRadius="10dp" />
 
             <TextView
                 android:id="@+id/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ir a Google Maps"
+                android:text="@string/ir_a_google_maps"
                 android:textColor="@android:color/holo_blue_dark"
                 android:textSize="16sp"
                 android:paddingTop="12dp"

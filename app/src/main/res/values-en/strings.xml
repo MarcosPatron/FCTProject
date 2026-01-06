@@ -19,7 +19,7 @@
     <string name="profile_edit" >Edit</string>
     <string name="profile_change_pass">Change password</string>
     <string name="profile_delete">Delete account</string>
-    <string name="signin_title">Cerate account</string>
+    <string name="signin_title">Create account</string>
     <string name="signin_fullname">Fullname</string>
     <string name="signin_username">Username</string>
     <string name="signin_mail">Email</string>
@@ -67,4 +67,58 @@
     <string name="help_ticket_error">There was an error sending the ticket</string>
     <string name="signin_pop_termsnconds">You must accept the terms and conditions</string>
     <string name="recomendaciones">Recommendations</string>
+    <string name="chat_del_asistente">Assistant Chat.</string>
+    <string name="concatedral_nombre">Co-Cathedral of Saint María</string>
+    <string name="concatedral_desc">
+        The Co-Cathedral of Saint Mary is the spiritual heart of Cáceres\' old town.
+        Its impressive Gothic architecture, side chapels filled with sacred art,
+        and the legendary Black Christ make it a must-see visit.
+    </string>
+
+    <string name="baluarte_pozos_nombre">Baluarte de los Pozos</string>
+    <string name="baluarte_pozos_desc">
+        Located in one of the most photogenic areas of the Jewish quarter,
+        this old fortress offers spectacular views of the lower city and the walls.
+    </string>
+
+    <string name="palacio_carvajal_nombre">Carvajal Palace</string>
+    <string name="palacio_carvajal_desc">
+        One of the most beautiful buildings in the historic center,
+        featuring a Renaissance façade and a charming inner garden.
+    </string>
+
+    <string name="torre_bujaco_nombre">Bujaco Tower</string>
+    <string name="torre_bujaco_desc">
+        The true symbol of Cáceres, this 12th-century Almohad tower dominates the Main Square
+        and offers stunning panoramic views.
+    </string>
+
+    <string name="torre_ciguenas_nombre">Palace and Tower of the Storks</string>
+    <string name="torre_ciguenas_desc">
+        A unique palace whose tower was never dismantled, preserving its medieval height
+        and crowned by storks, symbols of the city.
+    </string>
+
+    <string name="plaza_mayor_nombre">Main Square</string>
+    <string name="plaza_mayor_desc">
+        Lively and spacious, the Main Square is the gateway to the monumental city
+        and the perfect starting point for any visit.
+    </string>
+
+    <string name="arco_estrella_nombre">Star Arch</string>
+    <string name="arco_estrella_desc">
+        This Baroque arch is the most iconic entrance to the old town,
+        connecting modern life with medieval streets.
+    </string>
+
+    <string name="casco_historico_nombre">Historic Old Town</string>
+    <string name="casco_historico_desc">
+        A UNESCO World Heritage Site, Cáceres\' old town is one of the best preserved in Europe,
+        filled with palaces, towers, and timeless streets.
+    </string>
+    <string name="preguntar_al_asistente_sobre_este_lugar">Ask the assistant about this place</string>
+    <string name="ir_a_google_maps">Ir a Google Maps</string>
+    <string name="acepto_los_t_rminos_y_condiciones">I accept the terms and conditions</string>
+    <string name="inicia_sesi_n_para_que_se_guarden_los_chats_dentro_de_la_aplicaci_n">Log in to save your chats within the application.</string>
+    <string name="accede_a_nuestro_asistente_con_este_bot_n">Access our assistant with this button.</string>
 </resources>

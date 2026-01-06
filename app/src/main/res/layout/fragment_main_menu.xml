@@ -36,7 +36,7 @@
         android:layout_marginTop="60dp"
         android:layout_marginEnd="60dp"
         android:gravity="center"
-        android:text="Inicia sesión para que se guarden los chats dentro de la aplicación."
+        android:text="@string/inicia_sesi_n_para_que_se_guarden_los_chats_dentro_de_la_aplicaci_n"
         android:textColor="#737373"
         android:textSize="18dp"
         android:textStyle="italic" />
@@ -49,7 +49,7 @@
         android:layout_marginTop="800dp"
         android:layout_marginEnd="80dp"
         android:gravity="end"
-        android:text="Accede a nuestro asistente con este botón."
+        android:text="@string/accede_a_nuestro_asistente_con_este_bot_n"
         android:textColor="#737373"
         android:textSize="16dp"
         android:textStyle="italic" />

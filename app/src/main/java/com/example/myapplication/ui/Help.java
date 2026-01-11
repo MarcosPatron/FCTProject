@@ -65,6 +65,12 @@ public class Help extends Fragment {
             viewModel.sendTicket(category, priority, description, usuario);
         });
 
+        // Abrir drawer
+        binding.btnOpenDrawer.setOnClickListener(v -> {
+            DrawerLayout drawerLayout = requireActivity().findViewById(R.id.drawer_layout);
+            drawerLayout.openDrawer(GravityCompat.START);
+        });
+
         return view;
     }
 

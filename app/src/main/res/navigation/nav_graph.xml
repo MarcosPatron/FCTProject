@@ -6,102 +6,81 @@
     app:startDestination="@id/main_menu">
 
     <fragment
-        android:id="@+id/chat"
-        android:name="com.example.myapplication.ui.Chat"
-        android:label="Chat"
-        tools:layout="@layout/fragment_chat"/>
-
-    <fragment
         android:id="@+id/main_menu"
         android:name="com.example.myapplication.ui.MainMenu"
-        android:label="fragment_first"
+        android:label="MainMenu"
         tools:layout="@layout/fragment_main_menu">
 
         <action
             android:id="@+id/action_main_menu_to_chat"
-            app:destination="@id/chat"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:destination="@id/chat"/>
+
         <action
             android:id="@+id/action_main_menu_to_profile"
-            app:destination="@id/profile" />
+            app:destination="@id/profile"/>
+
         <action
             android:id="@+id/action_main_menu_to_settings"
-            app:destination="@id/settings" />
+            app:destination="@id/settings"/>
+
         <action
             android:id="@+id/action_main_menu_to_help"
-            app:destination="@id/help" />
-        <action
-            android:id="@+id/action_main_menu_to_logIn"
-            app:destination="@id/logIn" />
+            app:destination="@id/help"/>
+
         <action
             android:id="@+id/action_main_menu_to_recommendations"
-            app:destination="@id/recommendations" />
+            app:destination="@id/recommendations"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/chat"
+        android:name="com.example.myapplication.ui.Chat"
+        android:label="Chat"/>
+
     <fragment
         android:id="@+id/profile"
         android:name="com.example.myapplication.ui.Profile"
-        android:label="Profile" >
-        <action
-            android:id="@+id/action_profile_to_logIn"
-            app:destination="@id/logIn" />
-    </fragment>
+        android:label="Profile"/>
+
     <fragment
         android:id="@+id/settings"
         android:name="com.example.myapplication.ui.Settings"
-        android:label="Settings" >
+        android:label="Settings">
         <action
             android:id="@+id/action_settings_to_help"
             app:destination="@id/help" />
     </fragment>
+
     <fragment
         android:id="@+id/help"
         android:name="com.example.myapplication.ui.Help"
-        android:label="fragment_help"
-        tools:layout="@layout/fragment_help" >
+        android:label="Help">
         <action
             android:id="@+id/action_help_to_main_menu"
             app:destination="@id/main_menu" />
     </fragment>
-    <fragment
-        android:id="@+id/logIn"
-        android:name="com.example.myapplication.ui.LogIn"
-        android:label="fragment_log_in"
-        tools:layout="@layout/fragment_log_in" >
-        <action
-            android:id="@+id/action_logIn_to_profile"
-            app:destination="@id/profile" />
-        <action
-            android:id="@+id/action_logIn_to_signIn"
-            app:destination="@id/signIn" />
-    </fragment>
-    <fragment
-        android:id="@+id/signIn"
-        android:name="com.example.myapplication.ui.SignIn"
-        android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_in" >
-        <action
-            android:id="@+id/action_signIn_to_profile"
-            app:destination="@id/profile" />
-    </fragment>
+
     <fragment
         android:id="@+id/recommendations"
         android:name="com.example.myapplication.ui.Recommendations"
-        android:label="fragment_recommendations"
-        tools:layout="@layout/fragment_recommendations" >
+        android:label="Recommendations">
+
         <action
             android:id="@+id/action_recommendations_to_recommendationsInfo"
-            app:destination="@id/recommendationsInfo" />
+            app:destination="@id/recommendationsInfo"/>
     </fragment>
+
     <fragment
         android:id="@+id/recommendationsInfo"
         android:name="com.example.myapplication.ui.RecommendationsInfo"
-        android:label="fragment_recommendations_info"
-        tools:layout="@layout/fragment_recommendations_info" >
+        android:label="RecommendationsInfo">
+
         <action
             android:id="@+id/action_recommendationsInfo_to_chat"
-            app:destination="@id/chat" />
+            app:destination="@id/chat"/>
+        <action
+            android:id="@+id/action_recommendationsInfo_to_recommendations"
+            app:destination="@id/recommendations" />
     </fragment>
+
 </navigation>

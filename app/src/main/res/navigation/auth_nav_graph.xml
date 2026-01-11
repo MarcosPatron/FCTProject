@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/auth_nav_graph"
+    app:startDestination="@id/logIn">
+
+    <fragment
+        android:id="@+id/logIn"
+        android:name="com.example.myapplication.ui.LogIn"
+        android:label="Login">
+
+        <action
+            android:id="@+id/action_logIn_to_signIn"
+            app:destination="@id/signIn"/>
+
+        <action
+            android:id="@+id/action_auth_to_main"
+            app:destination="@id/main_menu"
+            app:popUpTo="@id/auth_nav_graph"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_logIn_to_nav_graph"
+            app:destination="@id/nav_graph" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signIn"
+        android:name="com.example.myapplication.ui.SignIn"
+        android:label="Sign In">
+
+        <action
+            android:id="@+id/action_auth_to_main"
+            app:destination="@id/main_menu"
+            app:popUpTo="@id/auth_nav_graph"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_signIn_to_nav_graph"
+            app:destination="@id/nav_graph" />
+        <action
+            android:id="@+id/action_signIn_to_logIn"
+            app:destination="@id/logIn" />
+    </fragment>
+
+    <include app:graph="@navigation/nav_graph" />
+
+</navigation>

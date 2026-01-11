@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.model.ChatClass;
+import com.example.myapplication.model.Usuario;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
@@ -21,16 +23,31 @@ import java.util.Map;
 public class RecyclerMenu extends RecyclerView.Adapter<RecyclerMenu.ThreadViewHolder> {
 
     private List<String> threadList;
+    private Context context;
 
     public RecyclerMenu(Context context) {
+        this.context = context;
         this.threadList = loadThreadList(context);
     }
 
-    // Saca los hilos de SharedPreferences
+    // Carga los hilos de SharedPreferences y elimina los chats si no hay sesión
     private List<String> loadThreadList(Context context) {
         SharedPreferencesManager manager = SharedPreferencesManager.getInstance(context);
         Map<String, ChatClass> chatMap = manager.getChatThreadsMap();
-        return new ArrayList<>(chatMap.keySet());
+        List<String> threads = new ArrayList<>();
+
+        boolean sesionActiva = Usuario.sesionActiva(context);
+
+        for (Map.Entry<String, ChatClass> entry : chatMap.entrySet()) {
+            String threadId = entry.getKey();
+            if (sesionActiva) {
+                threads.add(threadId); // Solo añadimos si hay sesión
+            } else {
+                // Si no hay sesión, eliminamos inmediatamente
+                manager.removeChatThread(threadId);
+            }
+        }
+        return threads;
     }
 
     public void updateList(Context context) {
@@ -49,7 +66,6 @@ public class RecyclerMenu extends RecyclerView.Adapter<RecyclerMenu.ThreadViewHo
     public void onBindViewHolder(@NonNull ThreadViewHolder holder, int position) {
         String threadId = threadList.get(position);
         holder.tvTitle.setText(R.string.chat_del_asistente);
-
         holder.tvThreadId.setText(threadId);
 
         holder.itemView.setOnClickListener(v -> {
@@ -59,24 +75,20 @@ public class RecyclerMenu extends RecyclerView.Adapter<RecyclerMenu.ThreadViewHo
         });
     }
 
-    // Toma el tamaño de la lista
     @Override
     public int getItemCount() {
         return threadList != null ? threadList.size() : 0;
     }
 
-    // Eliminar item de la lista
     public void removeItem(int position) {
         threadList.remove(position);
         notifyItemRemoved(position);
     }
 
-    // Toma item de la lista
     public String getItem(int position) {
         return threadList.get(position);
     }
 
-    // Clase con los datos que muestra el menu principal en la UI
     static class ThreadViewHolder extends RecyclerView.ViewHolder {
         TextView tvTitle, tvThreadId;
 

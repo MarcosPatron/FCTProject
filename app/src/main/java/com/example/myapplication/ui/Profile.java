@@ -16,9 +16,12 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.myapplication.R;
+import com.example.myapplication.model.Usuario;
 import com.example.myapplication.viewmodel.ProfileViewModel;
 import com.example.myapplication.databinding.FragmentProfileBinding;
 
@@ -52,11 +55,31 @@ public class Profile extends Fragment {
             }
         });
 
+        // Abrir drawer
+        binding.btnOpenDrawer.setOnClickListener(v -> {
+            DrawerLayout drawerLayout = requireActivity().findViewById(R.id.drawer_layout);
+            drawerLayout.openDrawer(GravityCompat.START);
+        });
+
         viewModel.getUsuarioEliminado().observe(getViewLifecycleOwner(), eliminado -> {
-            if (eliminado) {
-                Navigation.findNavController(view).navigate(R.id.action_profile_to_logIn);
-                Toast.makeText(getContext(), R.string.profile_deleted, Toast.LENGTH_SHORT).show();
+            if (!eliminado) return;
+
+            Context context = requireContext();
+
+            // Cerrar sesión
+            Usuario.cerrarSesion(context);
+
+            // Mostrar mensaje
+            Toast.makeText(context, R.string.profile_deleted, Toast.LENGTH_SHORT).show();
+
+            // Actualizar el Drawer sin cambiar de grafo
+            if (getActivity() instanceof MainActivity) {
+                ((MainActivity) getActivity()).actualizarDrawerMenu();
             }
+
+            // Opcional: volver al MainMenu después de eliminar cuenta
+            NavController navController = NavHostFragment.findNavController(this);
+            navController.navigate(R.id.main_menu);
         });
 
         // Botones

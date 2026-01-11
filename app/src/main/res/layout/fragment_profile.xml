@@ -9,19 +9,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/btnOpenDrawer"
+            android:layout_width="52dp"
+            android:layout_height="wrap_content"
+            android:text="☰"
+            android:textSize="26dp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"/>
 
         <!-- Foto de perfil -->
         <ImageView
             android:id="@+id/image_profile"
-            android:layout_width="160dp"
-            android:layout_height="160dp"
+            android:layout_width="224dp"
+            android:layout_height="243dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="12dp"
-            android:layout_marginTop="40dp"
             android:contentDescription="Foto de perfil"
             android:scaleType="centerCrop"
-            android:src="@drawable/pfp_b" />
+            android:src="@drawable/profile_icon" />
 
         <View
             android:layout_width="wrap_content"
@@ -34,7 +44,16 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginBottom="30dp">
+            android:layout_marginBottom="30dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp">
+
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="@string/usuario"
+                android:textSize="14sp"
+                android:textAlignment="viewStart" />
 
             <TextView
                 android:id="@+id/tv_username"
@@ -57,18 +76,29 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginBottom="30dp">
+            android:layout_marginBottom="30dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp">
+
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="@string/nombre_completo"
+                android:textSize="14sp"
+                android:textAlignment="viewStart" />
 
             <TextView
                 android:id="@+id/tv_full_name"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Marcos Patrón"
                 android:textStyle="bold"
                 android:textSize="16sp" />
@@ -85,18 +115,29 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginBottom="30dp">
+            android:layout_marginBottom="30dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp">
+
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="@string/correo_electronico"
+                android:textSize="14sp"
+                android:textAlignment="viewStart" />
 
             <TextView
                 android:id="@+id/tv_email"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="mpatronb@educarex.es"
                 android:textStyle="bold"
                 android:textSize="16sp" />
@@ -113,6 +154,8 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
+
+
         <TextView
             android:id="@+id/tv_edit_password"
             android:layout_width="wrap_content"
@@ -124,11 +167,12 @@
             android:text="@string/profile_change_pass"
             android:textColor="@android:color/holo_blue_dark"
             android:textSize="14sp"
-            android:textStyle="normal" />
+            android:textStyle="normal"
+            android:layout_marginStart="10dp"/>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="290dp"
+            android:layout_height="200dp"
             android:layout_weight="1"
             tools:ignore="InefficientWeight" />
 

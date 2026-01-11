@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentChatBinding;
 import com.example.myapplication.utils.RecyclerChat;
 import com.example.myapplication.viewmodel.ChatViewModel;
@@ -73,7 +74,7 @@ public class Chat extends Fragment {
             // Límite para invitados
             if (!viewModel.canGuestSendMessage(username)) {
                 binding.consulta.setText("");
-                binding.consulta.setHint("Límite de mensajes alcanzado (5). Inicia sesión para continuar.");
+                binding.consulta.setHint(R.string.max_msgs);
                 return;
             }
 

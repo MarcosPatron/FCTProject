@@ -121,4 +121,8 @@
     <string name="acepto_los_t_rminos_y_condiciones">I accept the terms and conditions</string>
     <string name="inicia_sesi_n_para_que_se_guarden_los_chats_dentro_de_la_aplicaci_n">Log in to save your chats within the application.</string>
     <string name="accede_a_nuestro_asistente_con_este_bot_n">Access our assistant with this button.</string>
+    <string name="max_msgs">Message limit reached (5). Log in to continue.</string>
+    <string name="usuario">Username:</string>
+    <string name="nombre_completo">Fullname:</string>
+    <string name="correo_electronico">Email:</string>
 </resources>

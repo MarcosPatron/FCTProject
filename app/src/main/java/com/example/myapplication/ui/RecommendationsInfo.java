@@ -47,6 +47,10 @@ public class RecommendationsInfo extends Fragment {
             Navigation.findNavController(v).navigate(R.id.action_recommendationsInfo_to_chat);
         });
 
+        binding.btnBack.setOnClickListener(v -> {
+                Navigation.findNavController(v).navigate(R.id.action_recommendationsInfo_to_recommendations);
+        });
+
         return view;
     }
 

@@ -83,6 +83,12 @@ public class Settings extends Fragment {
         binding.tvContactSupport.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.action_settings_to_help);
         });
+
+        // Abrir drawer
+        binding.btnOpenDrawer.setOnClickListener(v -> {
+            DrawerLayout drawerLayout = requireActivity().findViewById(R.id.drawer_layout);
+            drawerLayout.openDrawer(GravityCompat.START);
+        });
     }
 
     // Abre los terminos y condiciones o la privacidad

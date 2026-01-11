@@ -5,12 +5,14 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -58,39 +60,28 @@ public class MainActivity extends AppCompatActivity {
 
         // Navigation
         NavHostFragment navHostFragment = (NavHostFragment)
-                getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
+                getSupportFragmentManager().findFragmentById(R.id.nav_host_main);
         if (navHostFragment != null) {
             navController = navHostFragment.getNavController();
         }
-        // Drawer menu
+
+        // AppBarConfiguration: SOLO fragmentos del Drawer
         appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.logIn, R.id.recommendations, R.id.settings, R.id.help, R.id.profile
+                R.id.main_menu, R.id.profile, R.id.settings, R.id.recommendations, R.id.help
         ).setOpenableLayout(binding.drawerLayout).build();
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
-        // Ocultar la ActionBar del DrawerMenu
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
-
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-        // Cambia el menu drawer dependiendo si la sesion esta activa
+        // Cambiar visibilidad de items del Drawer según sesión
         binding.navView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
             boolean sesionActiva = Usuario.sesionActiva(this);
 
-            // Cambiar login por logout
-            binding.navView.getMenu().findItem(R.id.logIn).setTitle(
-                    sesionActiva ? getString(R.string.settings_logout) : getString(R.string.login_title)
-            );
-
-            // Ocultar perfil y soporte si no hay sesión
             binding.navView.getMenu().findItem(R.id.profile).setVisible(sesionActiva);
             binding.navView.getMenu().findItem(R.id.help).setVisible(sesionActiva);
         });
 
-        // Ventana emergente para confirmar el cierre de sesion
+        // Listener logout/login
         binding.navView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
 
@@ -101,12 +92,14 @@ public class MainActivity extends AppCompatActivity {
                             .setMessage(getString(R.string.main_sure))
                             .setPositiveButton(getString(R.string.main_yes), (dialog, which) -> {
                                 Usuario.cerrarSesion(this);
-                                navController.navigate(R.id.logIn);
+                                // Volver a grafo de Auth
+                                navController.setGraph(R.navigation.auth_nav_graph);
                             })
                             .setNegativeButton(getString(R.string.main_cancel), (dialog, which) -> dialog.dismiss())
                             .show();
                 } else {
-                    navController.navigate(R.id.logIn);
+                    // Si no hay sesión, cargar grafo de Auth
+                    navController.setGraph(R.navigation.auth_nav_graph);
                 }
 
                 binding.drawerLayout.close();
@@ -130,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     public boolean onSupportNavigateUp() {
         return NavigationUI.navigateUp(navController, appBarConfiguration) || super.onSupportNavigateUp();
@@ -150,12 +142,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Toma la localizacion
     private void getLastLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
+                != PackageManager.PERMISSION_GRANTED) return;
 
         fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
             if (location != null) {
@@ -163,5 +152,22 @@ public class MainActivity extends AppCompatActivity {
                 longitude = location.getLongitude();
             }
         });
+    }
+
+    public void actualizarDrawerMenu() {
+        boolean sesionActiva = Usuario.sesionActiva(this);
+
+        Menu menu = binding.navView.getMenu();
+        menu.findItem(R.id.logIn).setTitle(
+                sesionActiva ? getString(R.string.settings_logout) : getString(R.string.login_title)
+        );
+
+        menu.findItem(R.id.profile).setVisible(sesionActiva);
+        menu.findItem(R.id.help).setVisible(sesionActiva);
+
+        // Bloquear drawer si no hay sesión
+        binding.drawerLayout.setDrawerLockMode(
+                sesionActiva ? DrawerLayout.LOCK_MODE_UNLOCKED : DrawerLayout.LOCK_MODE_LOCKED_CLOSED
+        );
     }
 }

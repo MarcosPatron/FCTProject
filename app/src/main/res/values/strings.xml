@@ -25,7 +25,7 @@
     <string name="signin_mail">Correo electrónico</string>
     <string name="signin_pass">Contraseña</string>
     <string name="signin_c_pass">Confirmar contraseña</string>
-    <string name="menu_guest">Invitado</string>
+    <string name="menu_guest">Cáceres Data I.A.</string>
     <string name="settings_title">Configuración</string>
     <string name="settings_language">Idioma</string>
     <string name="settings_terms">Terminos y condiciones</string>
@@ -54,7 +54,7 @@
     <string name="main_yes">Si</string>
     <string name="main_cancel">Cancelar</string>
     <string name="main_permision">Permiso de ubicación denegado</string>
-    <string name="login_wrong_data">Contraseña incorrecta</string>
+    <string name="login_wrong_data">Usuario o contraseña incorrecta</string>
     <string name="login_error_login">Error al iniciar sesión.</string>
     <string name="login_conexion">Error de conexión</string>
     <string name="profile_new">"Nuevo "</string>
@@ -132,5 +132,7 @@
     <string name="usuario">Usuario:</string>
     <string name="nombre_completo">Nombre completo:</string>
     <string name="correo_electronico">Correo electronico:</string>
+    <string name="este_nombre_de_usuario_ya_existe">Este nombre de usuario ya existe</string>
+    <string name="este_usuario_no_existe">Este usuario no existe</string>
 
 </resources>

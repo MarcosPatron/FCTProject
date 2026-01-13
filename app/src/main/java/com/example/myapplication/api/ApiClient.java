@@ -12,7 +12,7 @@ public class ApiClient {
     private static Retrofit retrofit;
 
     // URL al backend
-    public static final String BASE_URL = "http://10.0.2.2:5000";
+    public static final String BASE_URL = "https://fctpython-production.up.railway.app";
 
     public static Retrofit getClient(Context context) {
         if (retrofit == null) {

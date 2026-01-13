@@ -47,9 +47,12 @@ public class LogInViewModel extends AndroidViewModel {
             public void onResponse(@NonNull Call<Usuario> call, @NonNull Response<Usuario> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     usuarioLiveData.setValue(response.body());
-                } else if (response.code() == 404) {
+                } else if (response.code() == 401) {
                     errorLiveData.setValue(getApplication().getString(R.string.login_wrong_data));
-                } else {
+                } else if (response.code() == 404) {
+                errorLiveData.setValue(getApplication().getString(R.string.este_usuario_no_existe));
+            }
+                else {
                     errorLiveData.setValue(getApplication().getString(R.string.login_error_login));
                 }
             }

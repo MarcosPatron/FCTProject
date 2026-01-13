@@ -1,11 +1,13 @@
 package com.example.myapplication.ui;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -73,32 +75,30 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-        // Cambiar visibilidad de items del Drawer según sesión
-        binding.navView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
-            boolean sesionActiva = Usuario.sesionActiva(this);
+        actualizarDrawerMenu();
 
-            binding.navView.getMenu().findItem(R.id.profile).setVisible(sesionActiva);
-            binding.navView.getMenu().findItem(R.id.help).setVisible(sesionActiva);
-        });
-
-        // Listener logout/login
+        // Listener login / logout
         binding.navView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
 
             if (id == R.id.logIn) {
                 if (Usuario.sesionActiva(this)) {
-                    new androidx.appcompat.app.AlertDialog.Builder(this)
+                    new AlertDialog.Builder(this)
                             .setTitle(getString(R.string.settings_logout))
                             .setMessage(getString(R.string.main_sure))
                             .setPositiveButton(getString(R.string.main_yes), (dialog, which) -> {
                                 Usuario.cerrarSesion(this);
+
+                                actualizarDrawerMenu();
+
                                 // Volver a grafo de Auth
                                 navController.setGraph(R.navigation.auth_nav_graph);
                             })
-                            .setNegativeButton(getString(R.string.main_cancel), (dialog, which) -> dialog.dismiss())
+                            .setNegativeButton(getString(R.string.main_cancel),
+                                    (dialog, which) -> dialog.dismiss())
                             .show();
                 } else {
-                    // Si no hay sesión, cargar grafo de Auth
+                    // No hay sesión → ir a login
                     navController.setGraph(R.navigation.auth_nav_graph);
                 }
 
@@ -122,6 +122,8 @@ public class MainActivity extends AppCompatActivity {
             getLastLocation();
         }
     }
+
+
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -158,16 +160,25 @@ public class MainActivity extends AppCompatActivity {
         boolean sesionActiva = Usuario.sesionActiva(this);
 
         Menu menu = binding.navView.getMenu();
-        menu.findItem(R.id.logIn).setTitle(
-                sesionActiva ? getString(R.string.settings_logout) : getString(R.string.login_title)
-        );
 
+        // 🔥 Cambiar texto y icono de login/logout
+        MenuItem loginItem = menu.findItem(R.id.logIn);
+        if (sesionActiva) {
+            loginItem.setTitle(getString(R.string.settings_logout));
+            loginItem.setIcon(R.drawable.ic_arrow_back);
+        } else {
+            loginItem.setTitle(getString(R.string.login_title));
+            loginItem.setIcon(R.drawable.login_icon);
+        }
+
+        // Mostrar/ocultar items según sesión
         menu.findItem(R.id.profile).setVisible(sesionActiva);
         menu.findItem(R.id.help).setVisible(sesionActiva);
 
-        // Bloquear drawer si no hay sesión
+        // Bloquear o desbloquear Drawer según sesión
         binding.drawerLayout.setDrawerLockMode(
                 sesionActiva ? DrawerLayout.LOCK_MODE_UNLOCKED : DrawerLayout.LOCK_MODE_LOCKED_CLOSED
         );
     }
+
 }

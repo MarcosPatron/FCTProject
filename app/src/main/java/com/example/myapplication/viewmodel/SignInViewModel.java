@@ -69,8 +69,18 @@ public class SignInViewModel extends AndroidViewModel {
 
                     usuarioLiveData.setValue(usuario);
                 } else {
-                    errorLiveData.setValue(context.getString(R.string.login_conexion));
-                }
+                    if (response.code() == 409) {
+                        // Mensaje predeterminado para usuario existente
+                        errorLiveData.setValue(
+                                context.getString(R.string.este_nombre_de_usuario_ya_existe)
+                        );
+                    } else {
+                        // Otros errores
+                        errorLiveData.setValue(
+                                context.getString(R.string.login_conexion)
+                        );
+                    }
+                    }
             }
 
             @Override

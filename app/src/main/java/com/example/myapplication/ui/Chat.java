@@ -71,13 +71,6 @@ public class Chat extends Fragment {
             String msg = binding.consulta.getText().toString().trim();
             if (TextUtils.isEmpty(msg)) return;
 
-            // Límite para invitados
-            if (!viewModel.canGuestSendMessage(username)) {
-                binding.consulta.setText("");
-                binding.consulta.setHint(R.string.max_msgs);
-                return;
-            }
-
             binding.consulta.setText("");
             viewModel.sendMessage(username, msg, Arrays.asList(
                     MainActivity.latitude,

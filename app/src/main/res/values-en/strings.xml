@@ -25,7 +25,7 @@
     <string name="signin_mail">Email</string>
     <string name="signin_pass">Password</string>
     <string name="signin_c_pass">Confirm password</string>
-    <string name="menu_guest">Guest</string>
+    <string name="menu_guest">Cáceres Data I.A.</string>
     <string name="settings_title">Settings</string>
     <string name="settings_language">Languaje</string>
     <string name="settings_terms">Terms and conditions</string>
@@ -54,7 +54,7 @@
     <string name="main_yes">Yes</string>
     <string name="main_cancel">Cancel</string>
     <string name="main_permision">Ubication permit denied</string>
-    <string name="login_wrong_data">Wrong password</string>
+    <string name="login_wrong_data">Wrong username or password</string>
     <string name="login_error_login">Login error</string>
     <string name="login_conexion">Conexion error</string>
     <string name="profile_new">New</string>
@@ -125,4 +125,6 @@
     <string name="usuario">Username:</string>
     <string name="nombre_completo">Fullname:</string>
     <string name="correo_electronico">Email:</string>
+    <string name="este_nombre_de_usuario_ya_existe">This username already exists</string>
+    <string name="este_usuario_no_existe">This user does not exist</string>
 </resources>

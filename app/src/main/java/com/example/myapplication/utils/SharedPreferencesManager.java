@@ -85,6 +85,7 @@ public class SharedPreferencesManager {
     public void clearAllChats() {
         editor.remove(CHAT_THREADS_KEY).commit();
     }
+    
 
     // METODO SOLO PARA PRUEBAS, permite reiniciar el singleton
     public static void resetInstance() {
